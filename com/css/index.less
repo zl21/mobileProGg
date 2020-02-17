@@ -1,3 +1,23 @@
+/* bg-px()函数:
+    两个参数：color，fx(top/bottom)
+*/
+.bg-px(@color,@fx){
+    position: relative;
+    &:after{
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 100%;
+        background-color: @color;
+        @{fx}: 0;
+        @media (-webkit-device-pixel-ratio: 2){
+            transform: scaleY(.5);
+        }
+        @media (-webkit-device-pixel-ratio: 3){
+            transform: scaleY(.3333333333333);
+        }
+    }
+}
 html,body{
     width: 100%;
     height: 100%;
@@ -5,92 +25,114 @@ html,body{
 .wrapper{
     height: 100%;
     overflow: hidden;
-}
-.header{
-    position: absolute;
-    width: 100%;
-    // header总高270
-    height: 2.7rem;
-    background-color: #161616;
-    .header_top{
-        // header_top高270
-        height: 1.35rem;
-        .logo{
-            float: left;
-            padding: 0.26rem 0.17rem 0.21rem 0.17rem;
-            img{
-                width: 2.4rem;
-                height: 0.88rem;
-            }
-        }
-        .menuBtn{
-            float: left;
-            width: 1.29rem;
+    background-color: #f8f3f3;
+    .header{
+        position: absolute;
+        width: 100%;
+        // header总高270
+        height: 2.7rem;
+        background-color: #161616;
+        .header_top{
+            // header_top高270
             height: 1.35rem;
-            background: url(../images/menuBtn.png) center 0.16rem no-repeat;
-            background-size: 0.82rem 2.33rem;
-            &.active{
-                background-position: center -1.20rem;
-            }
-        }
-        .btns{
-            float: right;
-            padding-top: 0.21rem;
-            a{
-                width: 1.22rem;
-                height: 0.78rem;
-                background-color: #690;
-                color: #ccc;
+            .logo{
                 float: left;
-                line-height: 0.78rem;
-                text-align: center;
-                margin-right: 0.15rem;
-                border-radius: 0.08rem;
-                font-size: 0.31rem;
-                &.search{
+                padding: 0.26rem 0.17rem 0.21rem 0.17rem;
+                img{
+                    width: 2.4rem;
                     height: 0.88rem;
-                    margin-right: 0.2rem;
-                    color: #fff;
-                    line-height: 0.88rem;
-                    border-radius: 0.1rem;
-                    font-weight: bold;
+                }
+            }
+            .menuBtn{
+                float: left;
+                width: 1.29rem;
+                height: 1.35rem;
+                background: url(../images/menuBtn.png) center 0.16rem no-repeat;
+                background-size: 0.82rem 2.33rem;
+                &.active{
+                    background-position: center -1.20rem;
+                }
+            }
+            .btns{
+                float: right;
+                padding-top: 0.21rem;
+                a{
+                    width: 1.22rem;
+                    height: 0.78rem;
+                    background-color: #690;
+                    color: #ccc;
+                    float: left;
+                    line-height: 0.78rem;
+                    text-align: center;
+                    margin-right: 0.15rem;
+                    border-radius: 0.08rem;
+                    font-size: 0.31rem;
+                    &.search{
+                        height: 0.88rem;
+                        margin-right: 0.2rem;
+                        color: #fff;
+                        line-height: 0.88rem;
+                        border-radius: 0.1rem;
+                        font-weight: bold;
+                    }
                 }
             }
         }
-    }
-    .header_bottom{
-        height: 1.03rem;
-        padding: 0.16rem;
-        form{
-            overflow: hidden;
-            input[type=text]{
-                width: 8.29rem;
-                height: 1.03rem;
-                float: left;
-                box-sizing: border-box;
-                background-color: #999;
-                padding: 0.05rem 0.1rem;
-                font-size: 0.41rem;
-                color: #333;
-                border-radius: 0.15rem 0 0 0.15rem;
-                border: 1px solid #5a5a5a;
-                //改变 placeholder占位符 的颜色
-                &::-webkit-input-placeholder{
-                    color:red;
+        .header_bottom{
+            height: 1.03rem;
+            padding: 0.16rem;
+            form{
+                overflow: hidden;
+                input[type=text]{
+                    width: 8.29rem;
+                    height: 1.03rem;
+                    float: left;
+                    box-sizing: border-box;
+                    background-color: #999;
+                    padding: 0.05rem 0.1rem;
+                    font-size: 0.41rem;
+                    color: #333;
+                    border-radius: 0.15rem 0 0 0.15rem;
+                    border: 1px solid #5a5a5a;
+                    //改变 placeholder占位符 的颜色
+                    &::-webkit-input-placeholder{
+                        color:red;
+                    }
+                    &:focus{
+                        background-color: #fff;
+                    }
                 }
-                &:focus{
-                    background-color: #fff;
+                input[type=submit]{
+                    width: 2.03rem;
+                    height: 1.03rem;
+                    float: right;
+                    background-color: #424242;
+                    color: #fff;
+                    font-size: 0.41rem;
+                    border-radius: 0.15rem;
+                    border:none;
                 }
             }
-            input[type=submit]{
-                width: 2.03rem;
-                height: 1.03rem;
-                float: right;
-                background-color: #424242;
-                color: #fff;
-                font-size: 0.41rem;
-                border-radius: 0.15rem;
-                border:none;
+        }
+        .mask{
+            .bg-px(red,top);
+            position: absolute;
+            left: 0;
+            top: 1.35rem;
+            width: 100%;
+            padding:0.1rem 0;
+            background-color: rgba(0,0,0,.8);
+            display: none;
+            li{
+                width: 25%;
+                height: 1.35rem;
+                font-size: 0.54rem;
+                line-height: 1.35rem;
+                text-align: center;
+                float: left;
+                a{
+                    color: #fff;
+                }
             }
         }
     }
