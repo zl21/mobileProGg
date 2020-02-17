@@ -1,5 +1,6 @@
 ;~function(doc){
-    let picWidth = 640;
+    // let picWidth = 640;
+    let picWidth = 1080;    // 设计图宽1080
     let docEle = doc.documentElement;
     let Ww = docEle.clientWidth;
 
