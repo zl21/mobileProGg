@@ -6,10 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mobilePro</title>
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-    <div class="wrapper"></div>
+    <div class="wrapper">
+        <!-- 
+            头部part：
+            头部需要保持当前位置一直不变，所以需要用到固定定位，此固定定位参照布局视口，然而由于移动端有许多视口（ios iframe内的fixed会失效），所以通常不采用固定定位，而是使用absolute定位来模拟fixed定位。
+         -->
+        <div class="header">
+            <div class="header_top">
+                <!-- logo -->
+                <h1 class="logo">
+                    <a href="javascript:; ">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
 
     <!-- 引入适配方案 -->
     <script src="js/rem.js"></script>
