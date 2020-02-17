@@ -24,3 +24,72 @@ body {
   width: 2.4rem;
   height: 0.88rem;
 }
+.header .header_top .menuBtn {
+  float: left;
+  width: 1.29rem;
+  height: 1.35rem;
+  background: url(../images/menuBtn.png) center 0.16rem no-repeat;
+  background-size: 0.82rem 2.33rem;
+}
+.header .header_top .menuBtn.active {
+  background-position: center -1.2rem;
+}
+.header .header_top .btns {
+  float: right;
+  padding-top: 0.21rem;
+}
+.header .header_top .btns a {
+  width: 1.22rem;
+  height: 0.78rem;
+  background-color: #690;
+  color: #ccc;
+  float: left;
+  line-height: 0.78rem;
+  text-align: center;
+  margin-right: 0.15rem;
+  border-radius: 0.08rem;
+  font-size: 0.31rem;
+}
+.header .header_top .btns a.search {
+  height: 0.88rem;
+  margin-right: 0.2rem;
+  color: #fff;
+  line-height: 0.88rem;
+  border-radius: 0.1rem;
+  font-weight: bold;
+}
+.header .header_bottom {
+  height: 1.03rem;
+  padding: 0.16rem;
+}
+.header .header_bottom form {
+  overflow: hidden;
+}
+.header .header_bottom form input[type=text] {
+  width: 8.29rem;
+  height: 1.03rem;
+  float: left;
+  box-sizing: border-box;
+  background-color: #999;
+  padding: 0.05rem 0.1rem;
+  font-size: 0.41rem;
+  color: #333;
+  border-radius: 0.15rem 0 0 0.15rem;
+  border: 1px solid #5a5a5a;
+}
+.header .header_bottom form input[type=text]::-webkit-input-placeholder {
+  color: red;
+}
+.header .header_bottom form input[type=text]:focus {
+  background-color: #fff;
+}
+.header .header_bottom form input[type=submit] {
+  width: 2.03rem;
+  height: 1.03rem;
+  float: right;
+  background-color: #424242;
+  color: #fff;
+  font-size: 0.41rem;
+  border-radius: 0.15rem;
+  border: none;
+}
