@@ -83,6 +83,81 @@
     <!-- 引入适配方案 -->
     <script src="js/rem.js"></script>
 
+    <script>
+        // 1.阻止默认事件
+        document.addEventListener("touchstart", function (ev) {
+            ev.preventDefault();
+        }, { passive: false });
+
+        // 2.面包屑导航
+        menuBtn();
+        function menuBtn() {
+            let oMenuBtn = document.querySelector(".wrapper .header .header_top .menuBtn");
+            let oMask = document.querySelector(".wrapper .header .mask");
+
+            //保存当前蒙版的状态
+            let isOpen = false;
+
+            //给按钮绑定点击事件
+            oMenuBtn.addEventListener("touchstart", function (ev) {
+                // 防止点击menuBtn时时间冒泡到document上从而执行document的绑定事件以至于蒙版不会被打开。
+                ev.stopPropagation();
+
+                // 阻止传播以后，就无法使用document上的阻止默认事件了,所以自身要书写也一个阻止默认事件
+                ev.preventDefault();
+
+                if (isOpen) {
+                    //关闭
+                    oMask.style.display = "none";
+                    this.classList.remove("active");
+                } else {
+                    //打开
+                    oMask.style.display = "block";
+                    this.classList.add("active");
+                }
+                // 状态改变之后，开关要取反
+                isOpen = !isOpen;
+            });
+
+            // 当点击页面其他位置的时候，关闭并改变开关的状态
+            document.addEventListener("touchstart", function () {
+                // 在其他位置点击的时候，如果开关是打开的则关闭，否则不做操作
+                if (isOpen) {
+                    oMask.style.display = "none";
+                    oMenuBtn.classList.remove("active");
+                    isOpen = !isOpen;
+                }
+            }, { passive: false });
+
+            // 点击蒙版时不能让蒙版消失(奇怪的需求)，所以给蒙版也绑定一个点击事件，阻止传播
+            oMask.addEventListener("touchstart", function (ev) {
+                ev.stopPropagation();
+                // 阻止传播后，在蒙版上就无法阻止默认事件了，所以需要手动阻止默认事件
+                ev.preventDefault();
+            }, { passive: false });
+        }
+
+        // 3.搜索栏获取焦点和失去焦点
+        changeFoucs();
+        function changeFoucs() {
+            let oInputSearch = document.querySelector(".wrapper .header .header_bottom form input[type=text]");
+            //点击输入框时输入框获取焦点
+            oInputSearch.addEventListener("touchstart", function (ev) {
+                this.focus();
+
+                //因为会传播到document点击失去焦点的事件上，所以需要阻止传播
+                ev.stopPropagation();
+                //如果阻止传播以后，可能会有自身的默认事件，需要阻止默认事件
+                ev.preventDefault();
+            }, { passive: false });
+
+            //点击其他位置时输入框失去焦点
+            document.addEventListener("touchstart", function () {
+                oInputSearch.blur();
+            }, { passive: false })
+        }
+
+    </script>
 </body>
 
 </html>
