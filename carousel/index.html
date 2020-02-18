@@ -38,7 +38,7 @@
                 //判断是否是无缝
                 let needCarousel = oCarouselWrap.getAttribute("needCarousel");
                 //把属性needCarousel 状态改变成布尔值
-                needCarousel = needCarousel == null ? false : true;
+                needCarousel = needCarousel == null ? true : false;
                 console.log(needCarousel);
                 //如果是无缝，则把数据的数组改变一下
                 if (needCarousel) {
@@ -101,6 +101,17 @@
                 isX = true;
 
                 oCarouselWrap.addEventListener("touchstart", function (ev) {
+                    //当手指头按下的时候，判断是不是无缝
+                    if (needCarousel) {
+                        let index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                        if (-index === 0) {
+                            // 因为ul都是的translateX都是负数，所以index可以设置为负的
+                            index = - pointsLength;
+                        } else if (-index == (arr.length - 1)) {
+                            index = -(pointsLength - 1);
+                        }
+                        tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                    }
                     //当手按下的时候，获取当前手的位置 及元素位置
                     let touch = ev.changedTouches[0];
                     //获取按下x 和 y的位置 以便判断防抖
