@@ -241,6 +241,40 @@
                 //获取元素现在的位置信息（我们设计使用tanslate来进行位移）
                 elementX = tools1.css(oList, "translateX");
 
+                //快速滑屏代码 在刚按下的时候，获取当前的位置和时间戳  以方便计算最后一帧的速度
+                lastTime = Date.now();//获取初始时间戳
+                lastPoint = tools1.css(oList, "translateX");
+            }, { passive: false });
+
+            oNav.addEventListener("touchmove", function (ev) {
+                oList.flag = false;//保存当前 是不是橡皮筋  当前不是
+
+                /* 由于受到end事件中transition动画的影响，需要在move时把动画取消 */
+                oList.style.transition = "none";
+                //获取当前事件的手指头 touchList的内容
+                let touch = ev.changedTouches[0];
+                //获取当前手指头的位置
+                let nowX = touch.clientX;
+                //计算差值（如向左拖则disX为负）
+                let disX = nowX - startX;//动手后手的位置nowX - 初放手的位置startX
+                //给元素的最终位置赋值
+                translateX = elementX + disX;
+                /* 使得元素每次的有效移动距离都小于上一次，通过乘以一个递减的比例。
+                    得出最终位置以后，判断临界值,橡皮筋效果是在临界值设置的,在move的过程中，手指移动的距离正常，但是每一次元素移动的有效距离慢慢变少,虽然每次移动的距离慢慢变少，但是元素也是在走。 
+                */
+                if (translateX >= 0) {
+                    oList.flag = true;
+                    //设置一个递减的比例，比例初始值还不能大于1
+                    let scale = 300 / (300 + translateX);
+                    //计算好比例以后，重新对tranlateX赋值，手指走的差值乘以比例，加上元素原始的位置值
+                    translateX = disX * scale + elementX;//(如向左拖时，负小数+elementX = 向左稍微多走一点点)
+                } else if (translateX <= minX) {
+                    let scale = 300 / (300 + translateX);
+                    translateX = - disX * scale + elementX;
+                }
+                //给元素赋值最终位置
+                tools1.css(oList, "translateX", translateX);
+
                 /* 快速滑屏效果的实现：
                     首按时获取当前位置及时间戳，便于计算速度。
                     second-touch时也获取位置及时间戳，并将第二次作为第三次的参照，
@@ -256,78 +290,64 @@
                 lastPoint = lastPoint;
             }, { passive: false });
 
-            oNav.addEventListener("touchmove", function (ev) {
-                /* 由于受到end事件中transition动画的影响，需要在move时把动画取消 */
-                oList.style.transition = "none";
-                //获取当前事件的手指头 touchList的内容
-                let touch = ev.changedTouches[0];
-                //获取当前手指头的位置
-                let nowX = touch.clientX;
-                //计算差值（如向左拖则disX为负）
-                let disX = nowX - startX;//动手后手的位置nowX - 初放手的位置startX
-                //给元素的最终位置赋值
-                translateX = elementX + disX;
-                /* 使得元素每次的有效移动距离都小于上一次，通过乘以一个递减的比例。
-                    得出最终位置以后，判断临界值,橡皮筋效果是在临界值设置的,在move的过程中，手指移动的距离正常，但是每一次元素移动的有效距离慢慢变少,虽然每次移动的距离慢慢变少，但是元素也是在走。 
-                */
-                if (translateX >= 0) {
-                    //设置一个递减的比例，比例初始值还不能大于1
-                    let scale = 300 / (300 + translateX);
-                    //计算好比例以后，重新对tranlateX赋值，手指走的差值乘以比例，加上元素原始的位置值
-                    translateX = disX * scale + elementX;//(如向左拖时，负小数+elementX = 向左稍微多走一点点)
-                } else if (translateX <= minX) {
-                    let scale = 300 / (300 + translateX);
-                    translateX = - disX * scale + elementX;
-                }
-                //给元素赋值最终位置
-                tools1.css(oList, "translateX", translateX);
-            }, { passive: false });
-
             //橡皮筋效果：松手后 弹回去
             oNav.addEventListener("touchend", function () {
                 // 快速滑屏（松手后）
                 let translateX = tools1.css(oList, 'translateX');// 获取松手瞬间的位置
-                let speed = pointDis / timeDis; //计算speed
-                console.log(speed); //speed不要不合理
-                speed = Math.abs(speed) < 0.5 ? 0 : speed;
+                // 判断滑屏与否
+                if (oList.flag) {
+                    if (translateX >= 0) {
+                        translateX = 0;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateX", translateX);
+                    } else if (translateX <= minX) {
+                        translateX = minX;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateX", translateX);
+                    }
+                } else {
+                    let speed = pointDis / timeDis; //计算speed
+                    console.log(speed); //speed不要不合理
+                    speed = Math.abs(speed) < 0.5 ? 0 : speed;
 
-                /* a little 优化 */
-                let time = Math.abs(speed) * 0.2;//速度决定动画时间，*0.2为了时间短点
-                time = time < 0.8 ? 0.8 : time;//控制time在0.8 ~ 2s之间
-                time = time > 2 ? 2 : time;
-                /* a little 优化结束 */
+                    /* a little 优化 */
+                    let time = Math.abs(speed) * 0.2;//速度决定动画时间，*0.2为了时间短点
+                    time = time < 0.8 ? 0.8 : time;//控制time在0.8 ~ 2s之间
+                    time = time > 2 ? 2 : time;
+                    /* a little 优化结束 */
 
-                // 确定最终位置
-                let targetX = translateX + speed * 200;
-                console.log(translateX, targetX);
-                /* // 到目标位置的过程
-                oList.style.transition = 'all .5s'; */
-                // 判断targetX临界
-                let bze = '';//使用贝塞尔曲线来实现快速滑屏到临界值后呈现橡皮筋效果
+                    // 确定最终位置
+                    let targetX = translateX + speed * 20;
+                    console.log(translateX, targetX);
+                    /* // 到目标位置的过程
+                    oList.style.transition = 'all .5s'; */
+                    // 判断targetX临界
+                    let bze = '';//使用贝塞尔曲线来实现快速滑屏到临界值后呈现橡皮筋效果
 
-                if (targetX >= 0) {
-                    targetX = 0;
-                    /* 快速滑屏到临界值之后呈现橡皮筋效果 */
-                    bze = 'cubic-bezier(.4,1.52,.7,1.57)';
-                } else if (targetX <= minX) {
-                    targetX = minX;
-                    bze = 'cubic-bezier(.4,1.52,.7,1.57)';
+                    if (targetX >= 0) {
+                        targetX = 0;
+                        /* 快速滑屏到临界值之后呈现橡皮筋效果 */
+                        bze = "cubic-bezier(.4,1.52,.7,1.57)";
+                    } else if (targetX <= minX) {
+                        targetX = minX;
+                        bze = "cubic-bezier(.4,1.52,.7,1.57)";
+                    }
+                    // 到目标位置的过程
+                    // oList.style.transition = 'all .5s';
+                    oList.style.transition = `all ${time}s ${bze}`;
+                    // 将目标位置赋值给元素
+                    tools1.css(oList, "translateX", targetX);
                 }
-                // 到目标位置的过程
-                // oList.style.transition = 'all .5s';
-                oList.style.transition = `all ${time}s ${bze}`;
-                // 将目标位置赋值给元素
-                tools1.css(oList, "translateX", targetX);
-/* 
-                //判断，如果到达临界值以后需要执行松手的内容，否则松手后不执行
-                if (translateX >= 0) {
-                    translateX = 0;
-                } else if (translateX <= minX) {
-                    translateX = minX;
-                }
-                oList.style.transition = "all .3s";
-                tools1.css(oList, "translateX", translateX); 
-*/
+                /* 
+                                //判断，如果到达临界值以后需要执行松手的内容，否则松手后不执行
+                                if (translateX >= 0) {
+                                    translateX = 0;
+                                } else if (translateX <= minX) {
+                                    translateX = minX;
+                                }
+                                oList.style.transition = "all .3s";
+                                tools1.css(oList, "translateX", translateX); 
+                */
             });
         }
     </script>
