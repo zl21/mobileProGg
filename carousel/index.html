@@ -11,7 +11,7 @@
 <body>
     <div id="wrap">
         <div class="carousel-wrap">
-
+            <div class="points-wrap"></div>
         </div>
     </div>
     <script src="./js/rem.js"></script>
@@ -24,6 +24,8 @@
         //封装轮播图的函数
         function carousel(arr) {
             let oCarouselWrap = document.querySelector(".carousel-wrap");
+            //数组长度可能会发生改变（如实现无缝轮播时要添加图片）
+            let pointsLength = arr.length;
             //如果用书书写了oCarouselWrap这个元素，则开始轮播图逻辑
             if (oCarouselWrap) {
                 //生成轮播图基本结构
@@ -41,6 +43,18 @@
                 // 把生成的li插入到父级中
                 oCarouselWrap.appendChild(oUlNode);
 
+                //添加小圆点导航
+                let oPointsWrap = document.querySelector(".points-wrap");
+                if (oPointsWrap) {
+                    //遍历获取数组的真实长度，生成相应数量的小圆点
+                    for (let i = 0; i < pointsLength; i++) {
+                        if (i == 0) {
+                            oPointsWrap.innerHTML += `<span class="active"></span>`;
+                        } else {
+                            oPointsWrap.innerHTML += `<span></span>`;
+                        }
+                    }
+                }
 
                 // 滑屏效果（Slide to switch pictures.）
                 let startX = 0;//初始化手按下时候的位置
@@ -69,17 +83,17 @@
                 }, { passive: false });
 
                 /* 类似四舍五入的效果，不让图片停留在尴尬的位置 */
-                oCarouselWrap.addEventListener("touchend",function(ev){
-                // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
-                if(disX < 0){
-                    index ++;//disX小于0时，左滑，index++即显示后一张
-                }else if(disX > 0){
-                    index --;
-                }
-                console.log(index);
-                // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
-                tools1.css(oUlNode,"translateX",- index*document.documentElement.clientWidth);
-            },{passive:false})
+                oCarouselWrap.addEventListener("touchend", function (ev) {
+                    // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
+                    if (disX < 0) {
+                        index++;//disX小于0时，左滑，index++即显示后一张
+                    } else if (disX > 0) {
+                        index--;
+                    }
+                    console.log(index);
+                    // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                    tools1.css(oUlNode, "translateX", - index * document.documentElement.clientWidth);
+                }, { passive: false })
             }
         }
     </script>

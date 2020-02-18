@@ -25,6 +25,7 @@ html,body{
     background-color: #eeeeee;
     .carousel-wrap{
         width: 100%;
+        position: relative;
         .list{
             width: 500%;
             overflow: hidden;
@@ -36,6 +37,24 @@ html,body{
                     img{
                         width: 100%;
                     }
+                }
+            }
+        }
+        .points-wrap{
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+            z-index: 2;
+            span{
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin: 5px;
+                background-color: #f2c4f8;
+                &.active{
+                    background-color: #7a058a;
                 }
             }
         }
