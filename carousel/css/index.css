@@ -13,12 +13,10 @@ body {
   position: relative;
 }
 #wrap .carousel-wrap .list {
-  width: 500%;
   overflow: hidden;
 }
 #wrap .carousel-wrap .list li {
   float: left;
-  width: 20%;
 }
 #wrap .carousel-wrap .list li a {
   display: block;

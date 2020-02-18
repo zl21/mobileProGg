@@ -6,6 +6,7 @@
     <title>Carousel轮播</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
+    <style></style>
 </head>
 
 <body>
@@ -34,7 +35,27 @@
             //如果用书书写了oCarouselWrap这个元素，则开始轮播图逻辑
             if (oCarouselWrap) {
                 //生成轮播图基本结构
+                //判断是否是无缝
+                let needCarousel = oCarouselWrap.getAttribute("needCarousel");
+                //把属性needCarousel 状态改变成布尔值
+                needCarousel = needCarousel == null ? false : true;
+                console.log(needCarousel);
+                //如果是无缝，则把数据的数组改变一下
+                if (needCarousel) {
+                    arr = arr.concat(arr);
+                }
                 let oUlNode = document.createElement("ul");
+                //生成style标签，用来动态的盛放图片的父级宽度 及 自身的宽度
+                let oStyle = document.createElement("style");
+                oStyle.innerHTML = `
+                .carousel-wrap>.list{
+                    width: ${arr.length}00%;
+                }
+                .carousel-wrap>.list>li{
+                    width:${1 / arr.length * 100}%
+                }`;
+                //把添加好样式的oStyle 添加在head中
+                document.head.appendChild(oStyle);
                 //给生成的ul添加类名
                 oUlNode.classList.add("list");
                 //根据后台数据生成内容，也就是li标签及里边的图片
