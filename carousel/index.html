@@ -11,7 +11,7 @@
 <body>
     <div id="wrap">
         <div class="carousel-wrap">
- 
+
         </div>
     </div>
     <script src="./js/rem.js"></script>
@@ -40,6 +40,32 @@
                 }
                 // 把生成的li插入到父级中
                 oCarouselWrap.appendChild(oUlNode);
+
+                // 滑屏效果（Slide to switch pictures.）
+                let startX = 0;//初始化手按下时候的位置
+                let elementX = 0;//初始化元素起始的位置
+                let disX = 0;//初始化每次滑动执行时候的差值
+                let translateX = 0;//元素移动后的位置
+
+                oCarouselWrap.addEventListener("touchstart", function (ev) {
+                    //当手按下的时候，获取当前手的位置 及元素位置
+                    let touch = ev.changedTouches[0];
+                    startX = touch.clientX;
+                    elementX = tools1.css(oUlNode, "translateX");
+                }, { passive: false });
+
+                oCarouselWrap.addEventListener("touchmove", function (ev) {
+                    let touch = ev.changedTouches[0];
+                    //当手移动的时获取新的手指的位置
+                    let nowX = touch.clientX;
+                    //求出手移动的距离
+                    disX = nowX - startX;
+                    //求出元素移动后的位置
+                    translateX = disX + elementX;
+
+                    //给元素的位置赋值
+                    tools1.css(oUlNode, "translateX", translateX);
+                }, { passive: false });
             }
         }
     </script>
