@@ -17,6 +17,11 @@
     <script src="./js/rem.js"></script>
     <script src="./js/tools.js"></script>
     <script>
+        //阻止默认事件
+        document.addEventListener("touchstart", function (ev) {
+            ev.preventDefault();
+        }, { passive: false });
+
         //1.根据后台数据请求图片
         let arr = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
 
@@ -62,37 +67,81 @@
                 let disX = 0;//初始化每次滑动执行时候的差值
                 let translateX = 0;//元素移动后的位置
                 let index = 0;//初始化一个下标 保存当前图片的下标
+                /*
+                防抖的思想:
+                    判断用户首次滑屏的方向
+                    如果是x轴  则不管用户怎么滑动 都会进行抖动
+                    如果是y轴  则不管用户怎么滑动 都不会抖动
+                */
+                //因防抖需要，重新定义一下新的变量
+                let startY = 0;//初始化手按下时候的位置
+                let disY = 0;//初始化每次滑动执行时候的差值
+                isFirst = true;//防抖中 判断当前是否是第一次进入
+                isX = true;
 
                 oCarouselWrap.addEventListener("touchstart", function (ev) {
                     //当手按下的时候，获取当前手的位置 及元素位置
                     let touch = ev.changedTouches[0];
+                    //获取按下x 和 y的位置 以便判断防抖
                     startX = touch.clientX;
+                    startY = touch.clientY;
                     elementX = tools1.css(oUlNode, "translateX");
+                    //每次touch都要改变isFirst与isX的状态为true
+                    let isFirst = true;
+                    let isX = true;
                 }, { passive: false });
 
                 oCarouselWrap.addEventListener("touchmove", function (ev) {
+                    if (!isX) {
+                        return;//非横向
+                    }
                     let touch = ev.changedTouches[0];
                     //当手移动的时获取新的手指的位置
                     let nowX = touch.clientX;
+                    let nowY = touch.clientY;
                     //求出手移动的距离
                     disX = nowX - startX;
+                    disY = nowY - startY;
                     //求出元素移动后的位置
                     translateX = disX + elementX;
+
+                    //给元素赋值之前的处理：首先判断是不是第一次，如果是第一次则计算出当前的方向
+                    if (isFirst) {
+                        isFirst = !isFirst;
+                        if (Math.abs(disY) > Math.abs(disX)) {
+                            //一旦这个时候防止抖动了，那么以后都需要防止抖动
+                            // 也就是说以后再也进不来touchmove事件了
+                            isX = !isX;
+                            // 说明在y轴上滑动，就不让向下执行
+                            return;//return 仅仅是首次防抖
+                        }
+                    }
+
                     //给元素的位置赋值
                     tools1.css(oUlNode, "translateX", translateX);
                 }, { passive: false });
 
                 /* 类似四舍五入的效果，不让图片停留在尴尬的位置 */
                 oCarouselWrap.addEventListener("touchend", function (ev) {
-                    // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
-                    if (disX < 0) {
-                        index++;//disX小于0时，左滑，index++即显示后一张
-                    } else if (disX > 0) {
-                        index--;
-                    }
-                    console.log(index);
+                    /* 
+                                        // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
+                                        if (disX < 0) {
+                                            index++;//disX小于0时，左滑，index++即显示后一张
+                                        } else if (disX > 0) {
+                                            index--;
+                                        }
+                                        console.log(index);
+                                        // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                                        tools1.css(oUlNode, "translateX", - index * document.documentElement.clientWidth);
+                     */
+                    //当松手的时候，获取此时元素的位置，把此时的位置比上 一个图片的大小
+                    //值得到的是一个小数，这个小数的小数点左边的数就是被滑动的那张图，小数点的数字 就是后边那种图被滑动的比例  
+                    //我们可以对小数进行四舍五入，如果后边小数点大于5 则说明用户已经翻过了一半 则换下张图，否则不换图
+                    index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                    index = Math.round(index);
+
                     // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
-                    tools1.css(oUlNode, "translateX", - index * document.documentElement.clientWidth);
+                    tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
                 }, { passive: false })
             }
         }
