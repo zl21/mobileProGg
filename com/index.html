@@ -221,28 +221,59 @@
             let startX = 0;//初始化当前手开始点击的位置
             let elementX = 0;//初始化当前元素的位置
             let translateX = 0;//初始化元素应该最终的位置
-
-            //给nav一个按下事件（想要滑动，首先必须按下）
+            let minX = oNav.offsetWidth - oList.offsetWidth;//定义一个拖动的临界值
+            /* list元素的宽度是想由内部的元素撑开的,而不是继承父元素的100%,所以：
+                可：<ul class="list" style="position: absolute;">
+                也可：<ul class="list" style="float: left;">
+             */
+            console.log(minX);
+            
+            //给nav一个按下事件（想要滑动，首先要按下）
             oNav.addEventListener("touchstart", function (ev) {
-                //获取当前事件的手指头 touchList的内容
+                //获取当前事件的touch，touchList的内容
                 let touch = ev.changedTouches[0];
                 //获取当前手指的位置
                 startX = touch.clientX;
                 //获取元素现在的位置信息（我们设计使用tanslate来进行位移）
                 elementX = tools1.css(oList, "translateX");
-            }, { passive: false })
+            }, { passive: false });
+
             oNav.addEventListener("touchmove", function (ev) {
                 //获取当前事件的手指头 touchList的内容
                 let touch = ev.changedTouches[0];
                 //获取当前手指头的位置
                 let nowX = touch.clientX;
-                //计算差值
-                let disX = nowX - startX;
+                //计算差值（如向左拖则disX为负）
+                let disX = nowX - startX;//动手后手的位置nowX - 初放手的位置startX
                 //给元素的最终位置赋值
                 translateX = elementX + disX;
-                //把元素的最终位置赋值给元素
+                /* 使得元素每次的有效移动距离都小于上一次，通过乘以一个递减的比例。
+                    得出最终位置以后，判断临界值,橡皮筋效果是在临界值设置的,在move的过程中，手指移动的距离正常，但是每一次元素移动的有效距离慢慢变少,虽然每次移动的距离慢慢变少，但是元素也是在走。 
+                */
+                if (translateX >= 0 ) {
+                    //设置一个递减的比例，比例初始值还不能大于1
+                    let scale = 300 / (300 + translateX);
+                    //计算好比例以后，重新对tranlateX赋值，手指走的差值乘以比例，加上元素原始的位置值
+                    translateX =  disX * scale + elementX;//(如向左拖时，负小数+elementX = 向左稍微多走一点点)
+                } else if (translateX <= minX) {
+                    let scale = 300 / (300 + translateX);
+                    translateX =  - disX * scale + elementX;
+                }
+                //给元素赋值最终位置
                 tools1.css(oList, "translateX", translateX);
-            }, { passive: false })
+            }, { passive: false });
+
+            //橡皮筋效果：松手后 弹回去
+            oNav.addEventListener("touchend", function () {
+                //判断，如果到达临界值以后需要执行松手的内容，否则松手后不执行
+                if (translateX >= 0) {
+                    translateX = 0;
+                } else if (translateX <= minX) {
+                    translateX = minX;
+                }
+                oList.style.transition = "all .3s";
+                tools1.css(oList, "translateX", translateX);
+            });
         }
     </script>
 </body>

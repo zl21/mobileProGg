@@ -171,6 +171,7 @@ body {
 }
 .wrapper .main .nav .list {
   white-space: nowrap;
+  float: left;
 }
 .wrapper .main .nav .list li {
   display: inline-block;
