@@ -257,6 +257,8 @@
             }, { passive: false });
 
             oNav.addEventListener("touchmove", function (ev) {
+                /* 由于受到end事件中transition动画的影响，需要在move时把动画取消 */
+                oList.style.transition = "none";
                 //获取当前事件的手指头 touchList的内容
                 let touch = ev.changedTouches[0];
                 //获取当前手指头的位置
@@ -288,7 +290,7 @@
                 let speed = pointDis / timeDis; //计算speed
                 console.log(speed); //speed不要不合理
                 speed = Math.abs(speed) < 0.5 ? 0 : speed;
-                
+
                 /* a little 优化 */
                 let time = Math.abs(speed) * 0.2;//速度决定动画时间，*0.2为了时间短点
                 time = time < 0.8 ? 0.8 : time;//控制time在0.8 ~ 2s之间
@@ -298,14 +300,23 @@
                 // 确定最终位置
                 let targetX = translateX + speed * 200;
                 console.log(translateX, targetX);
-                // 将目标位置赋值给元素
-                oList.style.transition = 'all .5s';
+                /* // 到目标位置的过程
+                oList.style.transition = 'all .5s'; */
                 // 判断targetX临界
+                let bze = '';//使用贝塞尔曲线来实现快速滑屏到临界值后呈现橡皮筋效果
+
                 if (targetX >= 0) {
                     targetX = 0;
+                    /* 快速滑屏到临界值之后呈现橡皮筋效果 */
+                    bze = 'cubic-bezier(.4,1.52,.7,1.57)';
                 } else if (targetX <= minX) {
                     targetX = minX;
+                    bze = 'cubic-bezier(.4,1.52,.7,1.57)';
                 }
+                // 到目标位置的过程
+                // oList.style.transition = 'all .5s';
+                oList.style.transition = `all ${time}s ${bze}`;
+                // 将目标位置赋值给元素
                 tools1.css(oList, "translateX", targetX);
 /* 
                 //判断，如果到达临界值以后需要执行松手的内容，否则松手后不执行
