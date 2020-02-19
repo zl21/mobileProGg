@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 16rem;
+            height: calc(180rem / 640 * 16);
+            background-color: darkorange;
+            border-bottom:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        我是头部
+    </header>
+    <script>
+        ~function(){
+            //求出像素比
+            let dpr = window.devicePixelRatio || 1;
+            //先创建一个style标签
+            let styleNode = document.createElement("style");
+            //计算屏幕宽度 并缩放一个比例
+            //因为做1物理像素的时候， 把整体全部缩放了，所以要扩大rem单位的大小 来覆盖对rem缩放的影响
+            let Ww = document.documentElement.clientWidth * dpr / 16;
+            // 把html的fontsize给上去  并且提高到最大优先级
+            styleNode.innerHTML = `
+                html{
+                    font-size: ${Ww}px !important;
+                }
+            `;
+            //把style标签插入到页面中
+            document.head.appendChild(styleNode);
+
+
+            //页面可以通过设置1px 来设置1物理像素的边框
+            
+            let dprScale = 1 / dpr;
+            let oMeatViewPort = document.querySelector("meta[name=viewport]");
+            oMeatViewPort.content = `width=device-width, initial-scale=${dprScale}`;
+
+        }();
+    </script>
+</body>
+</html>

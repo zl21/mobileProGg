@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{
+           margin: 0;
+           padding: 0;
+       }
+       body,html{
+           width: 100%;
+           height: 100%;
+       }
+       .wrap{
+           height: 100%;
+           position: relative;
+           font-size: 12px;
+       }
+       .con{
+           background-color: red;
+           position: absolute;
+           width: 100%;
+       }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="con"></div>
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oA = document.querySelectorAll("a");
+        let oCon = document.querySelector(".con");
+        let oWrap = document.querySelector(".wrap");
+
+        //随机生成一些内容
+        for(let i = 0 ; i < 100 ; i ++){
+            oCon.innerHTML += (i + "<br>")
+        }
+
+        //手指按下事件
+        oCon.addEventListener("touchstart",function(ev){
+            //获取当前的触摸的手指头
+            let touch = ev.changedTouches[0];
+            //获取元素的当前位置
+            let startPosition = oCon.offsetTop;
+            //获取手指的初始位置
+            let startPoint = touch.clientY;
+
+            oCon.addEventListener("touchmove",function(ev){
+                //获取当前的移动的手指头
+                let touch = ev.changedTouches[0];
+                //获取手指的移动后的位置
+                let endPoint = touch.clientY; 
+                //计算手指移动的差值
+                let disPoint = endPoint - startPoint;
+                // 得到con的定位
+                let endPosition = startPosition + disPoint;
+
+                //判断临界值
+                if(endPosition >= 0){
+                    endPosition = 0;
+                }else if(endPosition <= oWrap.offsetHeight - oCon.offsetHeight){
+                    endPosition = oWrap.offsetHeight - oCon.offsetHeight;
+                }
+                //赋值
+                oCon.style.top = endPosition + "px";
+            },{passive:false});
+
+        },{passive:false});
+
+        
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+    </script>
+</body>
+</html>

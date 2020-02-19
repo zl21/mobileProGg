@@ -1,0 +1,18 @@
+
+.bg-image(@url){
+    @media only screen and (-webkit-device-pixel-ratio: 2) {
+        background: url("../images/@{url}@2x.png") center center no-repeat;
+        background-size: cover;
+    }
+    @media only screen and (-webkit-device-pixel-ratio: 3) {
+        background: url("../images/@{url}@3x.png") center center no-repeat;
+        background-size: cover;
+    }
+}
+.con{
+    width: 0.62rem;
+    height: 0.62rem;
+    background: url(../images/star@1x.png) center center no-repeat;
+    background-size: cover;
+    .bg-image("star");
+}

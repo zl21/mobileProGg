@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{
+           margin: 0;
+           padding: 0;
+       }
+       body,html{
+           width: 100%;
+           height: 100%;
+       }
+       .wrap{
+           height: 100%;
+           position: relative;
+           font-size: 12px;
+       }
+       .mask{
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0,0,0,.6);
+           position: absolute;
+           top: 0;
+           left:0;
+       }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="mask"></div>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oA = document.querySelector("a");
+        let oMask = document.querySelector(".mask");
+
+        /*
+            oMask.addEventListener("touchstart",function(ev){
+                // 解决方法1:
+                // 在蒙版中阻止默认事件
+                // ev.preventDefault();
+                this.style.display = "none";
+            })
+        */
+
+        // 方法3:
+        oMask.addEventListener("touchstart",function(ev){
+            oA.style.pointerEvents = "none";
+            this.style.display = "none";
+            setTimeout(function(){
+                oA.style.pointerEvents = "auto";
+            },399)
+        })
+        
+        //方法2 全面阻止
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        /*
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+        */
+
+    </script>
+</body>
+</html>

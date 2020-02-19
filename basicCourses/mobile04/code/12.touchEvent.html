@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con{
+            width: 3rem;
+            height: 3rem;
+            font-size: 18px;
+            border:1px solid #000;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oCon = document.querySelector(".con");
+        
+        //手指按下事件
+        // oCon.addEventListener("touchstart",function(ev){
+        //     console.log(ev)
+        // })
+
+
+        oCon.addEventListener("touchend",function(ev){
+            // ev.changedTouches.item()
+            oCon.innerHTML += "当前离开的手指头有几个" + ev.changedTouches.length + "<br>";
+            oCon.innerHTML += "当前元素上还有几个手指头" + ev.targetTouches.length + "<br>";
+            oCon.innerHTML += "当前整个屏幕上还有几个手指头" + ev.touches.length + "<br>";
+        })
+    </script>
+</body>
+</html>

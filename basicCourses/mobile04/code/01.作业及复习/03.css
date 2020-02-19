@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wrap {
+  width: 6rem;
+  margin: 0 auto;
+  font-size: 16px;
+}
+.wrap header {
+  width: 100%;
+  height: 1rem;
+  background-color: #1b43fc;
+  line-height: 1rem;
+  text-align: center;
+  color: #fff;
+}
+.wrap .con {
+  width: 100%;
+  background-color: #b12121;
+  margin-top: 0.2rem;
+}
+.wrap .con .conList:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.wrap .con .conList .conItem {
+  width: 2.8rem;
+  height: 1rem;
+  margin: 0.1rem;
+  float: left;
+  background-color: lightblue;
+}
+.wrap .music {
+  width: 100%;
+  background-color: lightsalmon;
+  margin-top: 0.2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+.wrap .music .musicItem {
+  width: 1.9rem;
+  height: 0.8rem;
+  background-color: magenta;
+  margin: 0 0.1rem;
+}
+.wrap footer {
+  width: 100%;
+  height: 1rem;
+  background-color: mediumpurple;
+  margin-top: 0.2rem;
+}

@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       input{
+           border: 1px solid #000;
+       }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <script src="./rem2.js"></script>
+    <script>
+        let oIpts = document.querySelectorAll("input");
+        //全面阻止默认事件可能会让input无法正确的获取焦点
+        oIpts.forEach(function(item){
+            item.addEventListener("touchstart",function(ev){
+                ev.stopPropagation();
+            },{passive:false})
+        })
+        
+        
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+            console.log(1)
+        },{passive:false})
+
+    </script>
+</body>
+</html>

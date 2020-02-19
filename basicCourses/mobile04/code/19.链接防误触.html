@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{
+           margin: 0;
+           padding: 0;
+       }
+       body,html{
+           width: 100%;
+           height: 100%;
+       }
+       .wrap{
+           height: 100%;
+           position: relative;
+           font-size: 12px;
+       }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+        <a href="http://www.baidu.com">百度一下 你就知道</a>
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oA = document.querySelectorAll("a");
+
+        
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+
+        
+        oA.forEach(function(item){
+            item.addEventListener("touchstart",function(ev){
+                //给每一个a元素 定义一个防止误触的开关 直接绑定到元素的属性上
+                item.isMoved = false;
+            },{passive:false})
+        })
+
+        oA.forEach(function(item){
+            item.addEventListener("touchmove",function(ev){
+                //给每一个a元素 定义一个防止误触的开关 直接绑定到元素的属性上
+                item.isMoved = true;
+            },{passive:false})
+        })
+        
+        //手指抬起的时候跳转
+        oA.forEach(function(item){
+            item.addEventListener("touchend",function(ev){
+                if(!item.isMoved){
+                    location.href = item.href;
+                }
+            },{passive:false})
+        })
+
+    </script>
+</body>
+</html>

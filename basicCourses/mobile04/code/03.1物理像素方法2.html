@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 16rem;
+            height: calc(180rem / 640 * 16);
+            background-color: darkorange;
+            border-bottom:1px solid #000;
+        }
+        @media only screen and (-webkit-device-pixel-ratio: 2){
+            header{
+                transform: scaleY(.5);
+            }
+        }
+        @media only screen and (-webkit-device-pixel-ratio: 3){
+            header{
+                transform: scaleY(.333333333);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        我是头部
+    </header>
+    <script>
+        ~function(){
+            //先创建一个style标签
+            let styleNode = document.createElement("style");
+            //计算屏幕宽度 并缩放一个比例
+            let Ww = document.documentElement.clientWidth / 16;
+            // 把html的fontsize给上去  并且提高到最大优先级
+            styleNode.innerHTML = `
+                html{
+                    font-size: ${Ww}px !important;
+                }
+            `;
+            //把style标签插入到页面中
+            document.head.appendChild(styleNode);
+        }();
+    </script>
+</body>
+</html>

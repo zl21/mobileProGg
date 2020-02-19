@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       input{
+           border: 1px solid #000;
+       }
+    </style>
+</head>
+<body>
+    <a href="http://www.baidu.com">百度一下你就知道</a>
+    <a href="http://www.baidu.com">百度2下你就知道</a>
+    <a href="http://www.baidu.com">百度3下你就知道</a>
+    <a href="http://www.baidu.com">百度4下你就知道</a>
+    <a href="http://www.baidu.com">百度5下你就知道</a>
+    <a href="http://www.baidu.com">百度6下你就知道</a>
+    <script src="./rem2.js"></script>
+    <script>
+        let oA = document.querySelectorAll("a");
+        //手指按下的时候跳转
+        /*oA.forEach(function(item){
+            item.addEventListener("touchstart",function(ev){
+                ev.stopPropagation();
+            },{passive:false})
+        })*/ 
+
+        //手指抬起的时候跳转
+        oA.forEach(function(item){
+            item.addEventListener("touchend",function(ev){
+                // ev.stopPropagation();//阻止传播失效了 因为不是同一个事件
+                location.href = item.href;
+            },{passive:false})
+        })
+        
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+    </script>
+</body>
+</html>

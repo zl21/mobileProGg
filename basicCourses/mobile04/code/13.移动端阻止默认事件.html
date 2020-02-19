@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con{
+            width: 3rem;
+            height: 3rem;
+            font-size: 18px;
+            border:1px solid #000;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        你好
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oCon = document.querySelector(".con");
+        
+        //手指按下事件
+        // 如果对某一个元素阻止默认事件，那么只能在这个元素实现阻止
+        // oCon.addEventListener("touchstart",function(ev){
+        //     ev.preventDefault();
+        //     console.log(1)
+        // })
+
+        // 想要全面阻止默认事件，那么请给document绑定阻止默认事件
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+            console.log(1)
+        },{passive:false})
+
+    </script>
+</body>
+</html>

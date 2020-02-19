@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con{
+            width: 3rem;
+            height: 3rem;
+            font-size: 30px;
+            line-height: 3rem;
+            border:1px solid #000;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        你点我
+    </div>
+    <script src="./rem2.js"></script>
+    <script>
+        let oCon = document.querySelector(".con");
+        
+        //手指按下事件
+        oCon.ontouchstart = function(){
+            this.style.backgroundColor = "red";
+        }
+
+        //click事件
+        oCon.onclick = function(){
+            alert(1);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+header {
+  width: 14rem;
+  height: calc(180rem / 640 * 16);
+  margin: calc(20rem / 640 * 16) auto;
+  background-color: darkorange;
+  border-radius: 10px;
+  position: relative;
+}
+header:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform-origin: 0 bottom;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media only screen and (-webkit-device-pixel-ratio: 2) {
+  header:after {
+    transform: scaleY(0.5);
+  }
+}
+@media only screen and (-webkit-device-pixel-ratio: 3) {
+  header:after {
+    transform: scaleY(0.333333);
+  }
+}
