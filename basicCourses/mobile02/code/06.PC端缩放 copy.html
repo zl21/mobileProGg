@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pc端缩放</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .wrap{
+            overflow: hidden;
+            width: 100%;
+        }
+        .left{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+        .right{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- 当PC端缩放的时候，布局视口会发生变化  视觉视口也会发生变化 -->
+    <div class="wrap">
+        <div class="left"></div> 
+        <div class="right"></div> 
+    </div>
+    <script>
+    </script>
+</body>
+</html>

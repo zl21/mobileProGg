@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>移动端缩放</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .wrap{
+            overflow: hidden;
+            width: 100%;
+        }
+        .left{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+        .right{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- 移动端用户缩放不会改变布局
+    也就是 布局视口不会发生变化  但是视觉视口相对应的放大缩小
+    如果用户放大了页面 那么视觉视口变小
+    如果用户缩小了页面  那么视觉视口变大 -->
+    <div class="wrap">
+        <div class="left"></div> 
+        <div class="right"></div> 
+    </div>
+    <script>
+        console.log(window.innerWidth);
+    </script>
+</body>
+</html>

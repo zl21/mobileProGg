@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<script>
+    /* //适配思想
+    //把页面分成16等份，将ww/16作为html的font-size大小
+    //然后，16rem就是页面总宽度，8rem就是页面一半的宽度
+    var oHtml = document.querySelector("html");
+    var Ww = document.documentElement.clientWidth;
+    oHtml.style.fontSize = Ww / 16 + "px";//让根元素的字号大小等于屏幕的宽度，那么屏幕的总宽度就是1rem */
+
+    (function () {
+    var styleNode=document.createElement("style");
+    var Ww=document.documentElement.clientWidth/16;
+    styleNode.innerHTML="html{font-size:"+Ww+"px !important}"
+    document.head.appendChild(styleNode);
+})();
+</script>
+</body>
+
+</html>

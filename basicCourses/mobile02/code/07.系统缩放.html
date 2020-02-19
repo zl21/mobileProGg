@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- initial-scale是基于理想视口缩放的 -->
+    <!-- 系统缩放的布局视口和视觉视口都会发生变化 -->
+    <!-- 如果系统放大 则布局视口会变小 视觉视口也会变小  反之同理 -->
+    <meta name="viewport" content='initial-scale=0.5'>
+    <title>系统缩放</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .wrap{
+            overflow: hidden;
+            width: 100%;
+        }
+        .left{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left"></div> 
+    </div>
+    <script>
+    </script>
+</body>
+</html>

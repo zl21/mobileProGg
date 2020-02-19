@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 遇到太大的元素时，浏览器的布局视口会尽量的包裹住元素 -->
+    <!-- 所以就出出现系统缩放，覆盖了理想视口 -->
+    <!-- 我们需要再次书写系统缩放为1.0  就可以阻止 -->
+    <!-- 当两个一起书写的时候，就是完美视口 -->
+    <meta name="viewport" content='width=device-width,initial-scale=1.0'>
+    <title>太大的元素</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    hello world  im  mc hua
+    abcdefghijklmnopqlaklkajhsfkajshfkajskjmbkjhfiquhefkjsbflkajhsdflkjhaskfjaskjfbaskjhfbaksjfblaskjfblksadjfbsdkajfbksadf
+    <script>
+        console.log(innerWidth)
+    </script>
+</body>
+</html>

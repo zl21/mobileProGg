@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端布局视口的大小</title>
+    <style>
+        .wrap{
+            width: 490px;
+            height: 300px;
+            background-color: red;
+            color: #ccc;
+            text-align: center;
+            line-height: 300px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        你是多少？
+    </div>
+    <script>
+        //默认布局视口是980的css像素大小
+        let visualW = window.innerWidth;
+        console.log(visualW)
+    </script>
+</body>
+</html>

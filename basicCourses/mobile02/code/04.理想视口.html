@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 也就是当布局视口的宽度 等于 设备独立像素的宽度时就是理想视口 -->
+    <meta name="viewport" content="width=device-width">
+    <title>04.理想视口</title>
+    <style>
+        .wrap{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            color: #ccc;
+            text-align: center;
+            line-height: 300px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        你是多少？
+    </div>
+    <script>
+        console.log(window.innerWidth);
+    </script>
+</body>
+</html>
