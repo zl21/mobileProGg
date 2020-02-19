@@ -22,7 +22,8 @@
         //全面阻止默认事件可能会让input无法正确的获取焦点
         oIpts.forEach(function(item){
             item.addEventListener("touchstart",function(ev){
-                ev.stopPropagation();
+                // ev.stopPropagation();
+                this.focus();
             },{passive:false})
         })
         
