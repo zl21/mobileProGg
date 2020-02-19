@@ -145,6 +145,7 @@ html,body{
         top: 2.7rem;
         background-color: #fdf1f1;
         overflow: hidden;
+        overflow-y:auto;
         .nav{
             .bg-px(#fff,bottom);
             width: 100%;
@@ -210,6 +211,7 @@ html,body{
             width: 10.46rem;
             background-color: #fff;
             margin: 0 auto;
+            overflow: hidden;
             .tap-head{
                 height: 1.35rem;
                 line-height: 1.35rem;
@@ -246,7 +248,11 @@ html,body{
                 }
             }
             .tap-content{
+                width: 300%;
+                overflow: hidden;
                 ul{
+                    float:left;
+                    width: 33.333333%;
                     overflow: hidden;
                     li{
                         box-sizing: border-box;
@@ -270,23 +276,29 @@ html,body{
 
                             }
                         }
+                        .tap-discuss{
+                            display: flex;
+                            justify-content: space-between;
+                            .left{
+                                height: .5rem;
+                                background: url(../images/ice.png) 0 0.1rem no-repeat;
+                                padding-left: .6rem;
+                                margin-left: .2rem;
+                            }
+                            .right{
+                                height: .5rem;
+                                background: url(../images/ice.png) 0 -0.56rem no-repeat;
+                                padding-left: .6rem;
+                                margin-right: .2rem;
+                            }
+                        }
                     }
                 }
-            }
-            .tap-discuss{
-                display: flex;
-                justify-content: space-between;
-                .left{
-                    height: .5rem;
-                    background: url(../images/ice.png) 0 0.1rem no-repeat;
-                    padding-left: .6rem;
-                    margin-left: .2rem;
-                }
-                .right{
-                    height: .5rem;
-                    background: url(../images/ice.png) 0 -0.56rem no-repeat;
-                    padding-left: .6rem;
-                    margin-right: .2rem;
+                .tap-loading{
+                    background: url(../images/loading.gif) center center no-repeat;
+                    height: 10rem;
+                    float:left;
+                    width: 33.333333%;
                 }
             }
         }

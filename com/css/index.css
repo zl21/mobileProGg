@@ -145,6 +145,7 @@ body {
   top: 2.7rem;
   background-color: #fdf1f1;
   overflow: hidden;
+  overflow-y: auto;
 }
 .wrapper .main .nav {
   position: relative;
@@ -229,6 +230,7 @@ body {
   width: 10.46rem;
   background-color: #fff;
   margin: 0 auto;
+  overflow: hidden;
 }
 .wrapper .main .tap-wrap .tap-head {
   height: 1.35rem;
@@ -265,7 +267,13 @@ body {
   height: 0.09rem;
   background-color: #6f900b;
 }
+.wrapper .main .tap-wrap .tap-content {
+  width: 300%;
+  overflow: hidden;
+}
 .wrapper .main .tap-wrap .tap-content ul {
+  float: left;
+  width: 33.333333%;
   overflow: hidden;
 }
 .wrapper .main .tap-wrap .tap-content ul li {
@@ -288,19 +296,25 @@ body {
   text-overflow: ellipsis;
   color: #605e5e;
 }
-.wrapper .main .tap-wrap .tap-discuss {
+.wrapper .main .tap-wrap .tap-content ul li .tap-discuss {
   display: flex;
   justify-content: space-between;
 }
-.wrapper .main .tap-wrap .tap-discuss .left {
+.wrapper .main .tap-wrap .tap-content ul li .tap-discuss .left {
   height: 0.5rem;
   background: url(../images/ice.png) 0 0.1rem no-repeat;
   padding-left: 0.6rem;
   margin-left: 0.2rem;
 }
-.wrapper .main .tap-wrap .tap-discuss .right {
+.wrapper .main .tap-wrap .tap-content ul li .tap-discuss .right {
   height: 0.5rem;
   background: url(../images/ice.png) 0 -0.56rem no-repeat;
   padding-left: 0.6rem;
   margin-right: 0.2rem;
+}
+.wrapper .main .tap-wrap .tap-content .tap-loading {
+  background: url(../images/loading.gif) center center no-repeat;
+  height: 10rem;
+  float: left;
+  width: 33.333333%;
 }
