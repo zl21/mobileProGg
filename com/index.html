@@ -842,6 +842,9 @@
                 //滑屏逻辑初始化变量
                 let startPoint = { x: 0, y: 0 };//初始化手指的位置 分x和y
                 let elementPoint = { x: 0, y: 0 };//初始化元素按下时候的位置
+                //初始化防抖变量
+                let isFirst = true;//初始化是第一次
+                let isX = true;//初始化是x轴滑动
                 //给oTapContent绑定手指触摸事件
                 oTapContent.addEventListener("touchstart", function (ev) {
                     console.log(1)
@@ -854,6 +857,9 @@
                         x: tools1.css(oTapContent, "translateX"),
                         y: tools1.css(oTapContent, "translateY"),
                     }
+                    //当每次重新按下的时候 需要把 是否是第一次 和 是否是x滑动 变量更新为true
+                    isFirst = true;
+                    isX = true;
                 }, { passive: false });
 
                 //给oTapContent绑定手指滑动事件
@@ -866,6 +872,18 @@
                     let dis = {
                         x: nowPoint.x - startPoint.x,
                         y: nowPoint.y - startPoint.y
+                    }
+                    //防抖代码，只有第一次进入才执行防抖代码
+                    if (isFirst) {
+                        //当是第一次进入  那么首先取个反
+                        isFirst = !isFirst;
+                        // 检测第一次执行的move 和 start按下时候位置差 是x滑动还是y滑动
+                        if (Math.abs(dis.y) > Math.abs(dis.x)) {
+                            //如果在y轴滑动大于x轴 则把isX变成false，下次就无法进入move方法
+                            isX = false;
+                            //并让函数退出 不能执行下边的赋值代码
+                            return;
+                        }
                     }
 
                     tools1.css(oTapContent, "translateX", elementPoint.x + dis.x);
