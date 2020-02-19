@@ -847,7 +847,8 @@
                 let isX = true;//初始化是x轴滑动
                 //给oTapContent绑定手指触摸事件
                 oTapContent.addEventListener("touchstart", function (ev) {
-                    console.log(1)
+                    //去掉在其他事件中 给oTapcontent添加的动画
+                    oTapContent.style.transition = "none";
                     let touch = ev.changedTouches[0];
                     //给手指初始位置赋值
                     startPoint.x = touch.clientX;
@@ -891,7 +892,23 @@
 
                 //给oTapContent绑定手指抬起事件
                 oTapContent.addEventListener("touchend", function (ev) {
-
+                    //end中目前只判断没有超过二分之一的情况下
+                    let touch = ev.changedTouches[0];
+                    //松手的时候  获取当前的差值
+                    let nowPoint = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    }
+                    let dis = {
+                        x: nowPoint.x - startPoint.x,
+                        y: nowPoint.y - startPoint.y
+                    }
+                    //判断有没有超过二分之一
+                    if (Math.abs(dis.x) <= tapW / 2) {
+                        // 如果没有超过二分之一  则仍然返回拖动前的位置
+                        oTapContent.style.transition = "all 1s";
+                        tools1.css(oTapContent, "translateX", - tapW)
+                    }
                 }, { passive: false });
             }
         }
