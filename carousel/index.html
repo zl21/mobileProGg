@@ -11,7 +11,7 @@
 
 <body>
     <div id="wrap">
-        <div class="carousel-wrap" needCarousel>
+        <div class="carousel-wrap" needCarousel needauto>
             <div class="points-wrap"></div>
         </div>
     </div>
@@ -99,8 +99,14 @@
                 let disY = 0;//初始化每次滑动执行时候的差值
                 let isFirst = true;//防抖中 判断当前是否是第一次进入
                 let isX = true;
+                let needAutoTimer = null;//轮播图自动走与否
 
                 oCarouselWrap.addEventListener("touchstart", function (ev) {
+                    //当手指按下，清除自动走的计时器动画
+                    clearInterval(needAutoTimer);
+                    //当按下的时候清除动画
+                    oUlNode.style.transition = "none";
+
                     //当手指头按下的时候，判断是不是无缝
                     if (needCarousel) {
                         let index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
@@ -174,9 +180,52 @@
 
                     arcPoint(index);//调用
 
+                    //当松手的时候，应该继续自动走
+                    if (needAuto) {
+                        auto();
+                    }
+
                     // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
                     tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
                 }, { passive: false })
+
+                //获取用户是否书写needauto属性
+                let needAuto = oCarouselWrap.getAttribute("needauto");
+                // 把needauto属性变成布尔值
+                needAuto = needAuto === null ? false : true;
+                //判断当needauto为true  则需要自动滚动
+                if (needAuto) {
+                    //调用自动滚动函数
+                    auto();
+                }
+                //自动滚动函数
+                function auto() {
+                    //每次添加计时器之前 清掉之前的计时器
+                    clearInterval(needAutoTimer);
+                    needAutoTimer = setInterval(function () {
+                        // 自动走其实就是控制index的加减
+                        //在index自动改变之前，需要判断index当前的位置是不是最后一个
+                        //如果是 则index不能继续减了，所以需要把index变成前边对应图片的index
+                        //index变成之前对应的图片，图片的位置也要改变成之前的图片
+                        if (index == 1 - arr.length) {
+                            index = 1 - pointsLength;
+                            // 在这个改变状态下，不应该让瞬间改变拥有动画
+                            oUlNode.style.transition = "none";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                        }
+                        // 在同步执行代码的过程中，transition设置的值会前后覆盖，所以需要把后边的代码放到异步中执行
+                        setTimeout(function () {
+                            //因为index是负值，所以自动走应该是index --
+                            index--;
+                            oUlNode.style.transition = "all 1s";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+
+                            //每次移动过后让小圆点跟着走
+                            arcPoint(index);
+                        }, 0)
+
+                    }, 2000)
+                }
 
                 /* point nav 函数：一个参数 */
                 function arcPoint(index) {
