@@ -1,0 +1,62 @@
+//设计图的宽度
+@picWidth:640;
+//两个参数  @prop是要设置的属性  @num是在设计图中测量的值
+.rem(@prop,@num){
+    @{prop} :@num / @picWidth * 16rem;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.box1{
+  .rem(width,640);
+  .box5{
+    .rem(width,600);
+    .rem(height,100);
+    background: yellow;
+    margin: 20px 10px;
+  }
+}
+.con{
+  .rem(width,600);
+  .rem(height,300);
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: green;
+  li{
+    .rem(width,280);
+    .rem(height,100);
+    background: #009ee0;
+    margin: 20px 5px;
+    /*margin-top: 20px;*/
+    /*margin-right: 10px;*/
+  }
+}
+.zoc{
+  .rem(width,600);
+  .rem(height,120);
+  margin: 20px 10px;
+  background: #1e2bbb;
+  display: flex;
+  justify-content: space-around;
+  li{
+    .rem(width,190);
+    .rem(height,80);
+    background: purple;
+    margin: 20px 5px;
+  }
+}
+.box4{
+  .rem(width,640);
+  .box6{
+    .rem(width,600);
+    .rem(height,100);
+    background: yellow;
+    margin: 20px 10px;
+  }
+}
+

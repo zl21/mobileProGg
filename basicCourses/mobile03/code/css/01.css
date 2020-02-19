@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.con {
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 0.625rem;
+  background-color: red;
+}
+.con2 {
+  width: 4.5rem;
+  height: 2.5rem;
+  background-color: blue;
+}
+.con3 {
+  width: 5rem;
+  height: 2.5rem;
+  background-color: yellow;
+}

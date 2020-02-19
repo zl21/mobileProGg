@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem</title>
+    <style>
+       html{
+           font-size: 40px;
+       }
+        .outer{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            font-size: 40px;
+        }
+        .con{
+            width: 10rem;
+            height: 10rem;
+            font-size: 30px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- rem单位
+    是一个相对单位  相对跟元素html的font-size，和其他无关 -->
+    <div class="outer">
+        <div class="con"></div>
+    </div> 
+</body>
+</html>

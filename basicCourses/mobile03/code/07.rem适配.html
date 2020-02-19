@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .con{
+            width: calc(320rem / 640  * 16);
+            height: calc(100rem / 640  * 16);
+            background-color: red;
+        }
+        .con2{
+            width: calc(180rem / 640  * 16);
+            height: calc(100rem / 640  * 16);
+            background-color:blue;
+        }
+        .con3{
+            width: calc(200rem / 640  * 16);
+            height: calc(100rem / 640  * 16);
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 已知设计图是640px
+    .con 是320px  .con2是180px    .con3是200px  高度都是100px -->
+    <div class="con">
+        <!-- 满屏 -->
+    </div>
+    <div class="con2">
+        <!-- 半屏 -->
+    </div>
+    <div class="con3">
+        <!-- 三分屏 -->
+    </div>
+    <script>
+        //
+
+        let Ww = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = Ww / 16 + "px";
+    </script>
+</body>
+</html>

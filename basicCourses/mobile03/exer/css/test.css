@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.box1 {
+  width: 16rem;
+}
+.box1 .box5 {
+  width: 15rem;
+  height: 2.5rem;
+  background: yellow;
+  margin: 20px 10px;
+}
+.con {
+  width: 15rem;
+  height: 7.5rem;
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: green;
+}
+.con li {
+  width: 7rem;
+  height: 2.5rem;
+  background: #009ee0;
+  margin: 20px 5px;
+  /*margin-top: 20px;*/
+  /*margin-right: 10px;*/
+}
+.zoc {
+  width: 15rem;
+  height: 3rem;
+  margin: 20px 10px;
+  background: #1e2bbb;
+  display: flex;
+  justify-content: space-around;
+}
+.zoc li {
+  width: 4.75rem;
+  height: 2rem;
+  background: purple;
+  margin: 20px 5px;
+}
+.box4 {
+  width: 16rem;
+}
+.box4 .box6 {
+  width: 15rem;
+  height: 2.5rem;
+  background: yellow;
+  margin: 20px 10px;
+}
+/*# sourceMappingURL=test.css.map */

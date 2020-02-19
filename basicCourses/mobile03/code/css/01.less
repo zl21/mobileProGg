@@ -1,0 +1,26 @@
+//设计图宽度
+@picWidth:640;
+//两个参数  @prop是要设置的属性 @num是在设计图中测量的值
+.rem(@prop,@num){
+    @{prop} : @num / @picWidth * 16rem;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.con{
+    .rem(width,320);
+    .rem(height,100);
+    .rem(font-size,25);
+    background-color: red;
+}
+.con2{
+    width: 180rem / 640  * 16;
+    height: 100rem / 640  * 16;
+    background-color:blue;
+}
+.con3{
+    width: 200rem / 640  * 16;
+    height: 100rem / 640  * 16;
+    background-color: yellow;
+}

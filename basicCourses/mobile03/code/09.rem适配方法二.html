@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+        html{
+            font-size: 100px;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .con{
+            width: 3.2rem;
+            height: 1rem;
+            background-color: red;
+        }
+        .con2{
+            width: 1.8rem;
+            height: 1rem;
+            background-color:blue;
+        }
+        .con3{
+            width: 2rem;
+            height: 1rem;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 已知设计图是640px
+    .con 是320px  .con2是180px    .con3是200px  高度都是100px -->
+    <div class="con">
+        <!-- 满屏 -->
+    </div>
+    <div class="con2">
+        <!-- 半屏 -->
+    </div>
+    <div class="con3">
+        <!-- 三分屏 -->
+    </div>
+    <script>
+        
+    //当前的设置的是font-size为100px  按照设计图640的大小进行书写的内容
+
+    // 640 / 100 =  当前宽度 / x 
+    // 所以 x（当前手机的应该设置的font-size大小） = 当前宽度 * 100 / 640
+
+    let picWidth = 640;
+    let Ww = document.documentElement.clientWidth;
+    document.documentElement.style.fontSize = Ww * 100 / picWidth + "px";
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 100px;
+        }
+        .con{
+            width: 3.2rem;
+            height: 1rem;
+            background-color: red;
+        }
+        .con2{
+            width: 1.8rem;
+            height: 1rem;
+            background-color:blue;
+        }
+        .con3{
+            width: 2rem;
+            height: 1rem;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 已知设计图是640px
+    .con 是320px  .con2是180px    .con3是200px  高度都是100px -->
+    <div class="con">
+        <!-- 满屏 -->
+    </div>
+    <div class="con2">
+        <!-- 半屏 -->
+    </div>
+    <div class="con3">
+        <!-- 三分屏 -->
+    </div>
+    <script src="./rem2.js"></script>
+</body>
+</html>

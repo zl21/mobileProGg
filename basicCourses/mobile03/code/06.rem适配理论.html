@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .con{
+            width: 1rem;
+            height: 100px;
+            background-color: red;
+        }
+        .con2{
+            width: .5rem;
+            height: 100px;
+            background-color:blue;
+        }
+        .con3{
+            width: .33333333333rem;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <!-- 满屏 -->
+    </div>
+    <div class="con2">
+        <!-- 半屏 -->
+    </div>
+    <div class="con3">
+        <!-- 三分屏 -->
+    </div>
+    <script>
+        // 1.把当前屏幕的尺寸获取到
+        // 2.把屏幕的总宽度当成html标签的字号大小
+        // 3.无论在哪个手机中  1rem就是满屏   .5rem就是半屏  
+        // 4.这个时候 就完成了等比适配
+
+        let Ww = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = Ww + "px";
+    </script>
+</body>
+</html>
