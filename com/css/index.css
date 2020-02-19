@@ -144,6 +144,7 @@ body {
   bottom: 0;
   top: 2.7rem;
   background-color: #fdf1f1;
+  overflow: hidden;
 }
 .wrapper .main .nav {
   position: relative;
@@ -223,4 +224,83 @@ body {
 }
 .wrapper .main .carousel-wrap .points-wrap span.active {
   background: hotpink;
+}
+.wrapper .main .tap-wrap {
+  width: 10.46rem;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.wrapper .main .tap-wrap .tap-head {
+  height: 1.35rem;
+  line-height: 1.35rem;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .main .tap-wrap .tap-head h2 {
+  font-size: 0.7rem;
+}
+.wrapper .main .tap-wrap .tap-head span {
+  font-size: 0.4rem;
+}
+.wrapper .main .tap-wrap .tap-nav {
+  position: relative;
+  height: 1.05rem;
+  line-height: 1.05rem;
+}
+.wrapper .main .tap-wrap .tap-nav a {
+  float: left;
+  height: 1.05rem;
+  width: 1.2rem;
+  margin-right: 0.2rem;
+  font-size: 0.44rem;
+  text-align: center;
+  line-height: 1.05rem;
+  color: #6b6b6b;
+}
+.wrapper .main .tap-wrap .tap-nav .smallG {
+  position: absolute;
+  left: 0;
+  bottom: 0.1rem;
+  width: 1.2rem;
+  height: 0.09rem;
+  background-color: #6f900b;
+}
+.wrapper .main .tap-wrap .tap-content ul {
+  overflow: hidden;
+}
+.wrapper .main .tap-wrap .tap-content ul li {
+  box-sizing: border-box;
+  width: 5.06rem;
+  margin: 0.08rem;
+  padding: 0.05rem;
+  float: left;
+  background-color: #efefef;
+  color: #000;
+  font-size: 0.4rem;
+}
+.wrapper .main .tap-wrap .tap-content ul li a img {
+  width: 100%;
+}
+.wrapper .main .tap-wrap .tap-content ul li a span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #605e5e;
+}
+.wrapper .main .tap-wrap .tap-discuss {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .main .tap-wrap .tap-discuss .left {
+  height: 0.5rem;
+  background: url(../images/ice.png) 0 0.1rem no-repeat;
+  padding-left: 0.6rem;
+  margin-left: 0.2rem;
+}
+.wrapper .main .tap-wrap .tap-discuss .right {
+  height: 0.5rem;
+  background: url(../images/ice.png) 0 -0.56rem no-repeat;
+  padding-left: 0.6rem;
+  margin-right: 0.2rem;
 }
