@@ -106,6 +106,7 @@ body {
   padding: 0.1rem 0;
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
+  z-index: 3;
 }
 .wrapper .header .mask:after {
   position: absolute;
@@ -188,4 +189,38 @@ body {
 }
 .wrapper .main .nav .list li.active a {
   color: #fff;
+}
+.wrapper .main .carousel-wrap {
+  width: 100%;
+  position: relative;
+}
+.wrapper .main .carousel-wrap .list {
+  overflow: hidden;
+}
+.wrapper .main .carousel-wrap .list li {
+  float: left;
+}
+.wrapper .main .carousel-wrap .list li a {
+  display: block;
+}
+.wrapper .main .carousel-wrap .list li a img {
+  width: 100%;
+}
+.wrapper .main .carousel-wrap .points-wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+.wrapper .main .carousel-wrap .points-wrap span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+  margin: 5px;
+}
+.wrapper .main .carousel-wrap .points-wrap span.active {
+  background: hotpink;
 }

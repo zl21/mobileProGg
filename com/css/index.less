@@ -123,6 +123,7 @@ html,body{
             padding:0.1rem 0;
             background-color: rgba(0,0,0,.8);
             display: none;
+            z-index: 3;
             li{
                 width: 25%;
                 height: 1.35rem;
@@ -166,6 +167,40 @@ html,body{
                         a{
                             color: #fff;
                         }
+                    }
+                }
+            }
+        }
+        .carousel-wrap{
+            width: 100%;
+            position: relative;
+            .list{
+                overflow: hidden;
+                li{
+                    float: left;
+                    a{
+                        display: block;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .points-wrap{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 2;
+                span{
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: green;
+                    margin: 5px;
+                    &.active{
+                        background: hotpink;
                     }
                 }
             }
