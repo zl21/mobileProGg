@@ -11,7 +11,7 @@
 
 <body>
     <div id="wrap">
-        <div class="carousel-wrap">
+        <div class="carousel-wrap" needCarousel>
             <div class="points-wrap"></div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                 //判断是否是无缝
                 let needCarousel = oCarouselWrap.getAttribute("needCarousel");
                 //把属性needCarousel 状态改变成布尔值
-                needCarousel = needCarousel == null ? true : false;
+                needCarousel = needCarousel == null ? false : true;
                 console.log(needCarousel);
                 //如果是无缝，则把数据的数组改变一下
                 if (needCarousel) {
@@ -97,8 +97,8 @@
                 //因防抖需要，重新定义一下新的变量
                 let startY = 0;//初始化手按下时候的位置
                 let disY = 0;//初始化每次滑动执行时候的差值
-                isFirst = true;//防抖中 判断当前是否是第一次进入
-                isX = true;
+                let isFirst = true;//防抖中 判断当前是否是第一次进入
+                let isX = true;
 
                 oCarouselWrap.addEventListener("touchstart", function (ev) {
                     //当手指头按下的时候，判断是不是无缝
@@ -119,8 +119,8 @@
                     startY = touch.clientY;
                     elementX = tools1.css(oUlNode, "translateX");
                     //每次touch都要改变isFirst与isX的状态为true
-                    let isFirst = true;
-                    let isX = true;
+                    isFirst = true;
+                    isX = true;
                 }, { passive: false });
 
                 oCarouselWrap.addEventListener("touchmove", function (ev) {
@@ -172,9 +172,27 @@
                     index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
                     index = Math.round(index);
 
+                    arcPoint(index);//调用
+
                     // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
                     tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
                 }, { passive: false })
+
+                /* point nav 函数：一个参数 */
+                function arcPoint(index) {
+                    //先判断用户需不需要小圆点
+                    if (oPointsWrap) {
+                        let oPointsSpan = document.querySelectorAll(".points-wrap span");
+                        //在给span新的样式之前，需要把span原来的样式给清空
+                        for (let i = 0; i < oPointsSpan.length; i++) {
+                            oPointsSpan[i].classList.remove("active");
+                        }
+                        //根据当前图片的下标，得出需要添加特殊类名的元素
+                        //因为index的取值范围是 0-9  而span下标的范围是0-4  所以需要做一些处理
+                        // 0-9 对 5取余  得到的范围是 0 - 4  所以可以使用去、取余方法
+                        oPointsSpan[-index % pointsLength].classList.add("active");
+                    }
+                }
             }
         }
     </script>
