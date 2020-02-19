@@ -1,0 +1,44 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#wrap {
+  height: 100%;
+  overflow: hidden;
+  background-color: #eeeeee;
+}
+#wrap .carousel-wrap {
+  width: 100%;
+  position: relative;
+}
+#wrap .carousel-wrap .list {
+  overflow: hidden;
+}
+#wrap .carousel-wrap .list li {
+  float: left;
+}
+#wrap .carousel-wrap .list li a {
+  display: block;
+}
+#wrap .carousel-wrap .list li a img {
+  width: 100%;
+}
+#wrap .carousel-wrap .points-wrap {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  z-index: 2;
+}
+#wrap .carousel-wrap .points-wrap span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 5px;
+  background-color: #f2c4f8;
+}
+#wrap .carousel-wrap .points-wrap span.active {
+  background-color: #7a058a;
+}

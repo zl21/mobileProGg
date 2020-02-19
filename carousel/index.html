@@ -1,0 +1,250 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1,maximum-scale=1">
+    <title>Carousel轮播</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <style></style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="carousel-wrap" needCarousel needauto>
+            <div class="points-wrap"></div>
+        </div>
+    </div>
+    <script src="./js/rem.js"></script>
+    <script src="./js/tools.js"></script>
+    <script>
+        //阻止默认事件
+        document.addEventListener("touchstart", function (ev) {
+            ev.preventDefault();
+        }, { passive: false });
+
+        //1.根据后台数据请求图片
+        let arr = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+
+        carousel(arr);
+        //封装轮播图的函数
+        function carousel(arr) {
+            let oCarouselWrap = document.querySelector(".carousel-wrap");
+            //数组长度可能会发生改变（如实现无缝轮播时要添加图片）
+            let pointsLength = arr.length;
+            //如果用书书写了oCarouselWrap这个元素，则开始轮播图逻辑
+            if (oCarouselWrap) {
+                //生成轮播图基本结构
+                //判断是否是无缝
+                let needCarousel = oCarouselWrap.getAttribute("needCarousel");
+                //把属性needCarousel 状态改变成布尔值
+                needCarousel = needCarousel == null ? false : true;
+                console.log(needCarousel);
+                //如果是无缝，则把数据的数组改变一下
+                if (needCarousel) {
+                    arr = arr.concat(arr);
+                }
+                let oUlNode = document.createElement("ul");
+                //生成style标签，用来动态的盛放图片的父级宽度 及 自身的宽度
+                let oStyle = document.createElement("style");
+                oStyle.innerHTML = `
+                .carousel-wrap>.list{
+                    width: ${arr.length}00%;
+                }
+                .carousel-wrap>.list>li{
+                    width:${1 / arr.length * 100}%
+                }`;
+                //把添加好样式的oStyle 添加在head中
+                document.head.appendChild(oStyle);
+                //给生成的ul添加类名
+                oUlNode.classList.add("list");
+                //根据后台数据生成内容，也就是li标签及里边的图片
+                for (let i = 0; i < arr.length; i++) {
+                    oUlNode.innerHTML += `<li>
+                        <a href="###">
+                            <img src="${arr[i]}" alt="">
+                        </a>
+                    </li>`;
+                }
+                // 把生成的li插入到父级中
+                oCarouselWrap.appendChild(oUlNode);
+
+                //添加小圆点导航
+                let oPointsWrap = document.querySelector(".points-wrap");
+                if (oPointsWrap) {
+                    //遍历获取数组的真实长度，生成相应数量的小圆点
+                    for (let i = 0; i < pointsLength; i++) {
+                        if (i == 0) {
+                            oPointsWrap.innerHTML += `<span class="active"></span>`;
+                        } else {
+                            oPointsWrap.innerHTML += `<span></span>`;
+                        }
+                    }
+                }
+
+                // 滑屏效果（Slide to switch pictures.）
+                let startX = 0;//初始化手按下时候的位置
+                let elementX = 0;//初始化元素起始的位置
+                let disX = 0;//初始化每次滑动执行时候的差值
+                let translateX = 0;//元素移动后的位置
+                let index = 0;//初始化一个下标 保存当前图片的下标
+                /*
+                防抖的思想:
+                    判断用户首次滑屏的方向
+                    如果是x轴  则不管用户怎么滑动 都会进行抖动
+                    如果是y轴  则不管用户怎么滑动 都不会抖动
+                */
+                //因防抖需要，重新定义一下新的变量
+                let startY = 0;//初始化手按下时候的位置
+                let disY = 0;//初始化每次滑动执行时候的差值
+                let isFirst = true;//防抖中 判断当前是否是第一次进入
+                let isX = true;
+                let needAutoTimer = null;//轮播图自动走与否
+
+                oCarouselWrap.addEventListener("touchstart", function (ev) {
+                    //当手指按下，清除自动走的计时器动画
+                    clearInterval(needAutoTimer);
+                    //当按下的时候清除动画
+                    oUlNode.style.transition = "none";
+
+                    //当手指头按下的时候，判断是不是无缝
+                    if (needCarousel) {
+                        let index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                        if (-index === 0) {
+                            // 因为ul都是的translateX都是负数，所以index可以设置为负的
+                            index = - pointsLength;
+                        } else if (-index == (arr.length - 1)) {
+                            index = -(pointsLength - 1);
+                        }
+                        tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                    }
+                    //当手按下的时候，获取当前手的位置 及元素位置
+                    let touch = ev.changedTouches[0];
+                    //获取按下x 和 y的位置 以便判断防抖
+                    startX = touch.clientX;
+                    startY = touch.clientY;
+                    elementX = tools1.css(oUlNode, "translateX");
+                    //每次touch都要改变isFirst与isX的状态为true
+                    isFirst = true;
+                    isX = true;
+                }, { passive: false });
+
+                oCarouselWrap.addEventListener("touchmove", function (ev) {
+                    if (!isX) {
+                        return;//非横向
+                    }
+                    let touch = ev.changedTouches[0];
+                    //当手移动的时获取新的手指的位置
+                    let nowX = touch.clientX;
+                    let nowY = touch.clientY;
+                    //求出手移动的距离
+                    disX = nowX - startX;
+                    disY = nowY - startY;
+                    //求出元素移动后的位置
+                    translateX = disX + elementX;
+
+                    //给元素赋值之前的处理：首先判断是不是第一次，如果是第一次则计算出当前的方向
+                    if (isFirst) {
+                        isFirst = !isFirst;
+                        if (Math.abs(disY) > Math.abs(disX)) {
+                            //一旦这个时候防止抖动了，那么以后都需要防止抖动
+                            // 也就是说以后再也进不来touchmove事件了
+                            isX = !isX;
+                            // 说明在y轴上滑动，就不让向下执行
+                            return;//return 仅仅是首次防抖
+                        }
+                    }
+
+                    //给元素的位置赋值
+                    tools1.css(oUlNode, "translateX", translateX);
+                }, { passive: false });
+
+                /* 类似四舍五入的效果，不让图片停留在尴尬的位置 */
+                oCarouselWrap.addEventListener("touchend", function (ev) {
+                    /* 
+                                        // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
+                                        if (disX < 0) {
+                                            index++;//disX小于0时，左滑，index++即显示后一张
+                                        } else if (disX > 0) {
+                                            index--;
+                                        }
+                                        console.log(index);
+                                        // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                                        tools1.css(oUlNode, "translateX", - index * document.documentElement.clientWidth);
+                     */
+                    //当松手的时候，获取此时元素的位置，把此时的位置比上 一个图片的大小
+                    //值得到的是一个小数，这个小数的小数点左边的数就是被滑动的那张图，小数点的数字 就是后边那种图被滑动的比例  
+                    //我们可以对小数进行四舍五入，如果后边小数点大于5 则说明用户已经翻过了一半 则换下张图，否则不换图
+                    index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                    index = Math.round(index);
+
+                    arcPoint(index);//调用
+
+                    //当松手的时候，应该继续自动走
+                    if (needAuto) {
+                        auto();
+                    }
+
+                    // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                    tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                }, { passive: false })
+
+                //获取用户是否书写needauto属性
+                let needAuto = oCarouselWrap.getAttribute("needauto");
+                // 把needauto属性变成布尔值
+                needAuto = needAuto === null ? false : true;
+                //判断当needauto为true  则需要自动滚动
+                if (needAuto) {
+                    //调用自动滚动函数
+                    auto();
+                }
+                //自动滚动函数
+                function auto() {
+                    //每次添加计时器之前 清掉之前的计时器
+                    clearInterval(needAutoTimer);
+                    needAutoTimer = setInterval(function () {
+                        // 自动走其实就是控制index的加减
+                        //在index自动改变之前，需要判断index当前的位置是不是最后一个
+                        //如果是 则index不能继续减了，所以需要把index变成前边对应图片的index
+                        //index变成之前对应的图片，图片的位置也要改变成之前的图片
+                        if (index == 1 - arr.length) {
+                            index = 1 - pointsLength;
+                            // 在这个改变状态下，不应该让瞬间改变拥有动画
+                            oUlNode.style.transition = "none";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                        }
+                        // 在同步执行代码的过程中，transition设置的值会前后覆盖，所以需要把后边的代码放到异步中执行
+                        setTimeout(function () {
+                            //因为index是负值，所以自动走应该是index --
+                            index--;
+                            oUlNode.style.transition = "all 1s";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+
+                            //每次移动过后让小圆点跟着走
+                            arcPoint(index);
+                        }, 0)
+
+                    }, 2000)
+                }
+
+                /* point nav 函数：一个参数 */
+                function arcPoint(index) {
+                    //先判断用户需不需要小圆点
+                    if (oPointsWrap) {
+                        let oPointsSpan = document.querySelectorAll(".points-wrap span");
+                        //在给span新的样式之前，需要把span原来的样式给清空
+                        for (let i = 0; i < oPointsSpan.length; i++) {
+                            oPointsSpan[i].classList.remove("active");
+                        }
+                        //根据当前图片的下标，得出需要添加特殊类名的元素
+                        //因为index的取值范围是 0-9  而span下标的范围是0-4  所以需要做一些处理
+                        // 0-9 对 5取余  得到的范围是 0 - 4  所以可以使用去、取余方法
+                        oPointsSpan[-index % pointsLength].classList.add("active");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
