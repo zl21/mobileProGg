@@ -834,7 +834,6 @@
                 move(oTapContents[i]);
             }
 
-
             function move(oTapContent) {
                 //首先把主要内容区域移动进来
                 tools1.css(oTapContent, "translateX", -tapW);
@@ -886,8 +885,9 @@
                             return;
                         }
                     }
-
                     tools1.css(oTapContent, "translateX", elementPoint.x + dis.x);
+                    //每次只要执行move 都会执行这个函数，函数作用是检测是否超过二分之一 如果超过二分之一 则直接全部滑动过去
+                    jump(dis.x);//每次执行的时候 可以传入当前的差值
                 }, { passive: false });
 
                 //给oTapContent绑定手指抬起事件
@@ -910,6 +910,18 @@
                         tools1.css(oTapContent, "translateX", - tapW)
                     }
                 }, { passive: false });
+                //封装判断滑动是否二分之一并跳的函数
+                function jump(disX) {
+                    //首先判断是否超过二分之一
+                    if (Math.abs(disX) > tapW / 2) {
+                        //声明一个变量，代表元素最终要跳转的位置（只有两个 一个是0  一个是2*tapW）
+                        let targetX = disX > 0 ? 0 : -2 * tapW;
+                        //给元素的移动添加一个动画
+                        oTapContent.style.transition = "all 1s";
+                        //给元素跳到相应的位置
+                        tools1.css(oTapContent, "translateX", targetX)
+                    }
+                }
             }
         }
 
