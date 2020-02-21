@@ -142,10 +142,10 @@
                 <nav class="tap-nav">
                     <a href="###">全部</a>
                     <a href="###">内地</a>
-                    <a href="###">港台</a>
-                    <a href="###">欧美</a>
-                    <a href="###">韩国</a>
-                    <a href="###">日本</a>
+                    <a href="###">港澳台</a>
+                    <a href="###">欧美系列</a>
+                    <a href="###">日韩系列</a>
+                    <a href="###">鬼畜区</a>
                     <div class="smallG"></div>
                 </nav>
                 <div class="tap-content">
@@ -839,6 +839,12 @@
             }
 
             function move(oTapContent) {
+                //获取小绿
+                let oSmallG = oTapContent.parentNode.querySelector(".smallG");
+                //设置一下当前小绿条的宽度，默认初始的时候 小绿条的宽度 是第一个标题的宽度
+                let aNodes = oTapContent.parentNode.querySelectorAll(".tap-nav a");
+                oSmallG.style.width = aNodes[0].offsetWidth + "px";
+
                 //首先把主要内容区域移动进来
                 tools1.css(oTapContent, "translateX", -tapW);
 
@@ -848,8 +854,8 @@
                 //初始化防抖变量
                 let isFirst = true;//初始化是第一次
                 let isX = true;//初始化是x轴滑动
-
                 var isOver = false; //当前是否有动画
+                let now = 0;//当前选项卡切换的屏，默认是第一屏
 
                 //给oTapContent绑定手指触摸事件
                 oTapContent.addEventListener("touchstart", function (ev) {
@@ -863,6 +869,12 @@
                     //给手指初始位置赋值
                     startPoint.x = touch.clientX;
                     startPoint.y = touch.clientY;
+                    /* 以下是传值传址书写方法：
+                        但是上边的传值传址书写方法 在iphone5  5s 5c的型号中，在他们webview,移动端的事件的event对象执行了同一个引用
+                        如果将来出现兼容性问题 可以把代码改动为: startPoint = {clientX:touch.clientX,clientY:touch.clientY};
+                    */
+                    // startPoint = touch;
+
                     //给元素初始位置赋值
                     elementPoint = {
                         x: tools1.css(oTapContent, "translateX"),
@@ -882,11 +894,14 @@
                         return;
                     }
                     let touch = ev.changedTouches[0];
+                    // let nowPoint = touch;
                     let nowPoint = {
                         x: touch.clientX,
                         y: touch.clientY
                     }
                     let dis = {
+                        /* x: nowPoint.clientX - startPoint.clientX,
+                        y: nowPoint.clientY - startPoint.clientY */
                         x: nowPoint.x - startPoint.x,
                         y: nowPoint.y - startPoint.y
                     }
@@ -954,6 +969,22 @@
                                 oLoading[i].style.opacity = 1;
                             }
 
+                            //当loading开始显示的时候，说明用户滑动完毕，开始改变小绿条的定位
+                            //首先让now 开始 改变  需要判断now是++ 还是--
+                            //通过disX来判断用户滑动的方向
+                            disX > 0 ? now-- : now++;
+                            //然后判断now的临界值 
+                            if (now < 0) {
+                                //如果now小于0，则让now到最后的下标 也就是 a的长度减1
+                                now = aNodes.length - 1;
+                            } else if (now > aNodes.length - 1) {
+                                //当now值到达最大的时候，now应该变成0
+                                now = 0;
+                            }
+
+                            //得到now的值以后，开始计算小绿条的宽度 和小绿条的位置
+                            oSmallG.style.width = aNodes[now].offsetWidth + "px";
+                            tools1.css(oSmallG, "translateX", aNodes[now].offsetLeft);
                             //下一步 发送ajax请求 处理请求 然后完成数据的渲染,使用延迟计时器模拟数据进入
                             setTimeout(function () {
                                 //假设当前是成功执行的回调函数

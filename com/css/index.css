@@ -252,8 +252,7 @@ body {
 .wrapper .main .tap-wrap .tap-nav a {
   float: left;
   height: 1.05rem;
-  width: 1.2rem;
-  margin-right: 0.2rem;
+  margin-right: 0.4rem;
   font-size: 0.44rem;
   text-align: center;
   line-height: 1.05rem;
@@ -263,9 +262,9 @@ body {
   position: absolute;
   left: 0;
   bottom: 0.1rem;
-  width: 1.2rem;
   height: 0.09rem;
-  background-color: #6f900b;
+  background-color: green;
+  transition: all 1s;
 }
 .wrapper .main .tap-wrap .tap-content {
   width: 300%;
