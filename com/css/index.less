@@ -10,7 +10,7 @@
         width: 100%;
         background-color: @color;
         @{fx}: 0;
-        @media (-webkit-device-pixel-ratio: 2){
+	    @media (-webkit-device-pixel-ratio: 2){
             transform: scaleY(.5);
         }
         @media (-webkit-device-pixel-ratio: 3){
@@ -299,6 +299,8 @@ html,body{
                     height: 10rem;
                     float:left;
                     width: 33.333333%;
+		            opacity: 0;
+                    transition: all .5s;
                 }
             }
         }

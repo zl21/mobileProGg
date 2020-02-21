@@ -212,6 +212,7 @@
                             </div>
                         </li>
                     </ul>
+                    <div class="tap-loading"></div>
                 </div>
             </section>
 
@@ -293,6 +294,7 @@
                             </div>
                         </li>
                     </ul>
+                    <div class="tap-loading"></div>
                 </div>
             </section>
 
@@ -374,6 +376,7 @@
                             </div>
                         </li>
                     </ul>
+                    <div class="tap-loading"></div>
                 </div>
             </section>
         </div>
@@ -825,6 +828,7 @@
         function tap() {
             let oTapContents = document.querySelectorAll(".tap-content");
             let oTapWrap = document.querySelector(".tap-wrap");
+            let oLoading = document.querySelectorAll(".tap-loading");
             //获得父级的宽度，也是每一屏自己的宽度
             let tapW = oTapWrap.offsetWidth;
 
@@ -844,8 +848,15 @@
                 //初始化防抖变量
                 let isFirst = true;//初始化是第一次
                 let isX = true;//初始化是x轴滑动
+
+                var isOver = false; //当前是否有动画
+
                 //给oTapContent绑定手指触摸事件
                 oTapContent.addEventListener("touchstart", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
+
                     //去掉在其他事件中 给oTapcontent添加的动画
                     oTapContent.style.transition = "none";
                     let touch = ev.changedTouches[0];
@@ -864,6 +875,12 @@
 
                 //给oTapContent绑定手指滑动事件
                 oTapContent.addEventListener("touchmove", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
+                    if (!isX) {
+                        return;
+                    }
                     let touch = ev.changedTouches[0];
                     let nowPoint = {
                         x: touch.clientX,
@@ -892,6 +909,9 @@
 
                 //给oTapContent绑定手指抬起事件
                 oTapContent.addEventListener("touchend", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
                     //end中目前只判断没有超过二分之一的情况下
                     let touch = ev.changedTouches[0];
                     //松手的时候  获取当前的差值
@@ -914,12 +934,40 @@
                 function jump(disX) {
                     //首先判断是否超过二分之一
                     if (Math.abs(disX) > tapW / 2) {
+                        //在执行jump的时候，说明已经到达动画状态，此时需要把判断动画的变量给设置一下
+                        isOver = true;
                         //声明一个变量，代表元素最终要跳转的位置（只有两个 一个是0  一个是2*tapW）
                         let targetX = disX > 0 ? 0 : -2 * tapW;
                         //给元素的移动添加一个动画
                         oTapContent.style.transition = "all 1s";
                         //给元素跳到相应的位置
-                        tools1.css(oTapContent, "translateX", targetX)
+                        tools1.css(oTapContent, "translateX", targetX);
+                        //当最后超过二分之一时候自动走过去的动画执行完成以后，触发loading图的加载和数据的加载
+                        oTapContent.addEventListener("transitionend", endFn);
+                        function endFn() {
+                            //当事件绑定上去以后，开始执行的时候，直接先去掉当前的绑定
+                            //为了防止当前元素还有其他的transition事件
+                            oTapContent.removeEventListener("transitionend", endFn);
+
+                            //效果：超过二分之一的时候，需要等移动动画完成，然后把loading的透明度改成1
+                            for (let i = 0; i < oLoading.length; i++) {
+                                oLoading[i].style.opacity = 1;
+                            }
+
+                            //下一步 发送ajax请求 处理请求 然后完成数据的渲染,使用延迟计时器模拟数据进入
+                            setTimeout(function () {
+                                //假设当前是成功执行的回调函数
+                                //此时 loading的图变成透明，元素的内容区域回到正常位置 （-w）
+                                for (let i = 0; i < oLoading.length; i++) {
+                                    oLoading[i].style.opacity = 0;
+                                }
+                                //在改变位置的时候，要直接显示出来，所以需要把动画给去掉
+                                oTapContent.style.transition = "none";
+                                tools1.css(oTapContent, "translateX", -tapW)
+                                //当数据加载完成，并且动画执行完成的时候，需要把开关给关闭，然后就可以重新执行拖动动画了
+                                isOver = false;
+                            }, 2000)
+                        }
                     }
                 }
             }
