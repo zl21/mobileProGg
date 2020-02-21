@@ -1004,6 +1004,49 @@
             }
         }
 
+        // 7.nav导航 点击变色
+        changeColor();
+        function changeColor() {
+            let oList = document.querySelector(".main .nav .list");
+            let oAnodes = document.querySelectorAll(".main .nav .list li a");
+            //使用事件委托给所有的导航列表项添加事件
+            //当按下去的时候不要跳转，因为之前还写了一个滑动事件，
+            //当松开手的时候判断：当滑动的时候  不触发点击事件 当没有滑动的时候 触发点击事件
+            oList.addEventListener("touchstart", function () {
+                //当按下的手，给当前事件的list一个属性，保存是否有按下的情况
+                this.isMove = false;//默认当前没有移动
+            })
+
+            //绑定一个移动事件
+            oList.addEventListener("touchmove", function () {
+                //当手指滑动后，就把isMove给打开，说明手指头滑动了
+                this.isMove = true;
+            })
+
+            //绑定一个手指头抬起的事件
+            oList.addEventListener("touchend", function (ev) {
+                //当手指头抬起的时候，判断isMove的情况，
+                //如果滑动过，则不再继续执行，因为之前已经书写了滑动代码
+                //如果没有滑动过，则开始执行点击切换导航事件
+
+                if (this.isMove) {
+                    return;
+                }
+                //先获取当前事件的手指
+                let touch = ev.changedTouches[0];
+                if (touch.target.nodeName.toLowerCase() == "a") {
+                    //当前及某一个li的时候，把其他所有的样式圈闭清掉，然后给当前点击的li添加
+                    //因为target是a标签  所以要使用parentNode
+                    //for循环去掉所有默认样式
+                    for (let i = 0; i < oAnodes.length; i++) {
+                        oAnodes[i].parentNode.classList.remove("active");
+                    }
+                    //给当前点击的a元素的父级添加active类名
+                    touch.target.parentNode.classList.add("active");
+                }
+            })
+        }
+
     </script>
 </body>
 
