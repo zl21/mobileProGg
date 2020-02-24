@@ -153,6 +153,8 @@ body {
   height: 1.77rem;
   box-sizing: border-box;
   padding: 0.31rem 0 0.14rem 0;
+  z-index: 2;
+  background-color: #fff;
 }
 .wrapper .main .nav:after {
   position: absolute;

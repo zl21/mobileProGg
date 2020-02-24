@@ -480,6 +480,9 @@
             let timeDis = 0; //time-distance
             let pointDis = 0; //point-distance
 
+            // 给list一个3d变形，让他的动画执行硬件加速
+            tools1.css(oList, "translateZ", 0);
+
             //给nav一个按下事件（想要滑动，首先要按下）
             oNav.addEventListener("touchstart", function (ev) {
                 //获取当前事件的touch，touchList的内容
@@ -567,7 +570,7 @@
                     /* a little 优化结束 */
 
                     // 确定最终位置
-                    let targetX = translateX + speed * 200;
+                    let targetX = translateX + speed * 300;
                     console.log(translateX, targetX);
                     /* // 到目标位置的过程
                     oList.style.transition = 'all .5s'; */
