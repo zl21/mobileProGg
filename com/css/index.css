@@ -145,7 +145,6 @@ body {
   top: 2.7rem;
   background-color: #fdf1f1;
   overflow: hidden;
-  overflow-y: auto;
 }
 .wrapper .main .nav {
   position: relative;
@@ -196,6 +195,7 @@ body {
 }
 .wrapper .main .carousel-wrap {
   width: 100%;
+  height: 6.21rem;
   position: relative;
 }
 .wrapper .main .carousel-wrap .list {
