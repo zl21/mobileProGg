@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        /* orientation:检测横屏竖屏 portrait竖屏 */
+        @media (orientation : portrait){
+            .box{
+                background-color: pink;
+            }
+        }
+        @media (orientation : landscape){
+            .box{
+                background-color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

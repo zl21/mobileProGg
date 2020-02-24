@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        /* @media not tv{
+            .box{
+                background-color: yellow;
+            }
+            
+        } */
+
+        /* and是与 多个条件必须满足 */
+        /* @media tv and (orientation : portrait){
+            .box{
+                background-color: yellow;
+            }
+        } */
+        /* @media screen and (orientation : portrait) and (-webkit-device-pixel-ratio : 2){
+            .box{
+                background-color: yellow;
+            }
+        } */
+
+        /* @media only screen and (orientation : portrait) and (-webkit-device-pixel-ratio : 2){
+            .box{
+                background-color: yellow;
+            }
+        } */
+
+        /* not是检测后边所有的语句 */
+        @media not all and (orientation : portrait){
+            .box{
+                background-color: yellow;
+            }
+        }
+
+        /* orientation:检测横屏竖屏 portrait竖屏 */
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

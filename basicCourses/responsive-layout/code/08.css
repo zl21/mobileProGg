@@ -1,0 +1,29 @@
+body {
+  background-color: pink;
+}
+@media (min-width: 800px) {
+  body {
+    background-color: red;
+  }
+}
+@media (max-width: 800px) {
+  body {
+    background-color: yellow;
+  }
+}
+/*
+body{
+    background-color: pink;
+}
+@media (min-width:800px) {
+    body{
+        background-color: red;
+    }
+}
+@media (max-width:800px) {
+    body{
+        background-color: yellow;
+    }
+    
+}
+*/

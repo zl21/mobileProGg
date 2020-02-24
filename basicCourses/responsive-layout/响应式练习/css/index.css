@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+  display: block;
+}
+input {
+  outline: none;
+}
+header {
+  width: 100%;
+  height: 60px;
+  background-color: #54ABD4;
+  border-bottom: 5px solid #88c5e1;
+  overflow: hidden;
+  display: flex;
+}
+header .logo {
+  width: 25%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .logo a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .logo a img {
+  height: 70%;
+  display: none;
+}
+@media screen and (min-width: 1024px) {
+  header .logo a img:nth-child(1) {
+    display: block;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  header .logo a img:nth-child(2) {
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  header .logo a img:nth-child(3) {
+    display: block;
+  }
+}
+header .search {
+  width: 50%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+header .search input[type=text] {
+  width: 80%;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #888;
+}
+header .search input[type=submit] {
+  width: 20%;
+  height: 40px;
+  border: 1px solid #888;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+header .nav {
+  width: 25%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .nav .navList {
+  display: none;
+  width: 100%;
+}
+header .nav .navList div {
+  display: flex;
+  justify-content: space-evenly;
+}
+header .nav .navList div a {
+  width: 25%;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  font-size: 12px;
+}
+@media screen and (min-width: 768px) {
+  header .nav .navList {
+    display: block;
+  }
+}
+header .nav .btns {
+  width: 46px;
+  height: 34px;
+  border: 2px solid #fff;
+  display: none;
+}
+header .nav .btns div {
+  display: flex;
+  height: 34px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+header .nav .btns div span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background-color: #888;
+}
+@media screen and (max-width: 768px) {
+  header .nav .btns {
+    display: block;
+  }
+}
