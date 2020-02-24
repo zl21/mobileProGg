@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background-color: red;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script src="./tools.js"></script>
+    <script>
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+        let startScale = 1;
+        let oBox = document.querySelector("#box");
+        let callBack = {
+            start(){
+                //当按下的时候获取当前的比例是什么
+                startScale = tools1.css(oBox,"scale");
+            },
+            move(scale){
+                //在原有的基础上去扩展这个比例，所以首先要知道这次缩放之前的比例是多少
+                tools1.css(oBox,"scale",startScale*scale);
+            },
+            end(){
+                
+            }
+        }
+        gesture(oBox,callBack);
+        //多指事件封装
+        function gesture(node,callBack){
+            let startC = 0;
+            node.addEventListener("touchstart",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length >= 2){
+                    //获取两根手指头的初始距离差
+                    startC = getC(touchs[0],touchs[1]);
+                    if(callBack && typeof callBack["start"] == "function"){
+                        callBack["start"]();
+                    }
+                }
+            })
+            node.addEventListener("touchmove",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length >= 2){
+                    //在移动的时候 获取两根手指的距离差
+                    //获取两根手指头的初始距离差
+                    let endC = getC(touchs[0],touchs[1]);
+                    let scale = endC / startC;
+                    if(callBack && typeof callBack["move"] == "function"){
+                        callBack["move"](scale);
+                    }
+                }
+            }),
+            node.addEventListener("touchend",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length < 2){
+                    //code
+                    if(callBack && typeof callBack["end"] == "function"){
+                        callBack["end"]();
+                    }
+                }
+            })
+        }
+        
+        //获取两个手指头之间的差值
+        function getC(p1,p2){
+            let disX = p1.clientX - p2.clientX;
+            let disY = p1.clientY - p2.clientY;
+            // disC平方 = disX平方 + disY平方  勾股定理
+            let disC = Math.sqrt(disX * disX + disY * disY)
+            return disC;
+        }
+    </script>
+</body>
+</html>

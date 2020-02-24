@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+        /*
+        let oBox = document.querySelector("#box");
+        let i = 0;
+        
+        oBox.addEventListener("touchstart",function(ev){
+            //获取touchList列表
+            let touchs = ev.touches;
+            //如果touchs的长度超过了2个 那么说明模拟了多指事件
+            if(touchs.length >= 2){
+                i = 0;
+                this.style.background = "green";
+            }
+        });
+
+        oBox.addEventListener("touchmove",function(ev){
+            let touchs = ev.touches;
+            if(touchs.length >= 2){
+                i ++;
+                this.innerHTML = i;
+            }
+        })
+
+        oBox.addEventListener("touchend",function(ev){
+            let touchs = ev.touches;
+            if(touchs.length < 2){
+                this.innerHTML = "";
+                this.style.background = "red";
+            }
+        })
+        */
+
+        let oBox = document.querySelector("#box");
+        let callBack = {
+            i: 0,
+            start(){
+                this.i = 0;
+                oBox.style.background = "green";
+            },
+            move(){
+                this.i++;
+                oBox.innerHTML = this.i;
+            },
+            end(){
+                oBox.innerHTML = "";
+                oBox.style.background = "red";
+            }
+        }
+        gesture(oBox,callBack);
+        //多指事件封装
+        function gesture(node,callBack){
+            node.addEventListener("touchstart",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length >= 2){
+                    //code
+                    if(callBack && typeof callBack["start"] == "function"){
+                        callBack["start"]();
+                    }
+                }
+            })
+            node.addEventListener("touchmove",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length >= 2){
+                    //code
+                    if(callBack && typeof callBack["move"] == "function"){
+                        callBack["move"]();
+                    }
+                }
+            }),
+            node.addEventListener("touchend",function(ev){
+                let touchs = ev.touches;
+                if(touchs.length < 2){
+                    //code
+                    if(callBack && typeof callBack["end"] == "function"){
+                        callBack["end"]();
+                    }
+                }
+            })
+        }
+    
+    </script>
+</body>
+</html>

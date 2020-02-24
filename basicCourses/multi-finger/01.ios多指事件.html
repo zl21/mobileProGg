@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        document.addEventListener("touchstart",function(ev){
+            ev.preventDefault();
+        },{passive:false})
+
+        let oBox = document.querySelector("#box");
+        let i = 0;
+        // 只能是ios端支持
+        // gesturestart:手指触碰当前元素，屏幕上有两个或者两个以上的手指
+        document.addEventListener("gesturestart",function(){
+            i = 0;
+            oBox.style.background = "green";
+        })
+        //gesturechange手指触碰当前元素，屏幕上有两个或者两个以上的手指位置在发生移动
+        
+        document.addEventListener("gesturechange",function(){
+            i++;
+            oBox.innerHTML = i;
+        })
+
+        // gestureend在gesturestart后, 屏幕上只剩下两根以下（不包括两根）的手指
+        document.addEventListener("gestureend",function(){
+            oBox.innerHTML = "";
+            oBox.style.background = "red";
+        })
+    </script>
+</body>
+</html>
