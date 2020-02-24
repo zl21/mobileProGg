@@ -11,6 +11,16 @@ body {
   overflow: hidden;
   background-color: #f8f3f3;
 }
+.wrapper .scrollBar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #f49ef7;
+  width: 4px;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.3s;
+}
 .wrapper .header {
   position: absolute;
   width: 100%;

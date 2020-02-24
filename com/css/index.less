@@ -26,6 +26,16 @@ html,body{
     height: 100%;
     overflow: hidden;
     background-color: #f8f3f3;
+    .scrollBar{
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: rgb(244, 158, 247);
+        width: 4px;
+        opacity: 0;
+        z-index: 5;
+        transition: opacity .3s;
+    }
     .header{
         position: absolute;
         width: 100%;

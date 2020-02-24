@@ -16,6 +16,7 @@
             头部需要保持当前位置一直不变，所以需要用到固定定位，此固定定位参照布局视口，然而由于移动端有许多视口（ios iframe内的fixed会失效），所以通常不采用固定定位，而是使用absolute定位来模拟fixed定位。
          -->
         <div class="header">
+            <div class="scrollBar"></div>
             <div class="header_top">
                 <!-- logo -->
                 <h1 class="logo">
@@ -1056,8 +1057,24 @@
         // 8.竖向滑屏
         let oMain = document.querySelector(".main");
         let oMainIn = document.querySelector(".mainIn");
-        vMove(oMain, oMainIn);
-        function vMove(oNav, oList) {
+        let oHeader = document.querySelector(".header");
+        // 9.滚动条逻辑
+        let oBar = document.querySelector(".wrapper .scrollBar");
+        let scaleBar = document.documentElement.clientHeight / oMainIn.offsetHeight;
+        oBar.style.height = scaleBar * document.documentElement.clientHeight + "px";
+        let callBack = {
+            start() {
+                oBar.style.opacity = 1;
+            },
+            move() {
+                tools1.css(oBar, "translateY", - (tools1.css(this, "translateY") + oHeader.offsetHeight) * scaleBar)
+            },
+            end() {
+                oBar.style.opacity = 0;
+            }
+        } //oHeader end
+        vMove(oMain, oMainIn, callBack);
+        function vMove(oNav, oList, callBack) {
             //既点即停需要Tween算法
             let Tween = {
                 Linear: function (t, b, c, d) { return c * t / d + b; },
@@ -1099,6 +1116,10 @@
                 lastPoint = touch.clientY;
                 isFirst = true;
                 isY = true;
+                //调用回调函数
+                if (callBack && typeof callBack["start"] === "function") {
+                    callBack["start"]();
+                }
             }, { passive: false })
             oNav.addEventListener("touchmove", function (ev) {
                 if (!isY) {
@@ -1154,6 +1175,10 @@
                 //如果不是最后一次滑动，则把这次的时间和距离更新为旧的值
                 lastTime = nowTime;
                 lastPoint = nowPoint;
+                //调用回调函数
+                if (callBack && typeof callBack["move"] === "function") {
+                    callBack["move"].call(oList);
+                }
             }, { passive: false })
 
             //橡皮筋效果是 松手后 弹回去
@@ -1171,6 +1196,9 @@
                         translateY = minY;
                         oList.style.transition = `all .3s`;
                         tools1.css(oList, "translateY", translateY);
+                    }
+                    if (callBack && typeof callBack["move"] === "function") {
+                        callBack["end"]();
                     }
                 } else {
                     //计算最后一帧的速度
@@ -1223,8 +1251,14 @@
 
                 bzrTimer = setInterval(function () {
                     t++;
+                    if (callBack && typeof callBack["move"] === "function") {
+                        callBack["move"].call(oList);
+                    }
                     if (t >= d) {
                         clearInterval(bzrTimer);
+                        if (callBack && typeof callBack["move"] === "function") {
+                            callBack["end"]();
+                        }
                     }
                     tools1.css(oList, "translateY", Tween[type](t, b, c, d));
                 }, 1000 / 60)
