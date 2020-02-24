@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    什么是zeptoJS
+        移动端开发框架，是jQuery的轻量级代替品，API及语法仝jQuery相似,但是文件更小(5-10k)
+        是目前功能完备的类库中 最小的一个
+        同jQuery一样 以$ 作为核心函数和核心对象
+       
+        <div id="btn">我是一个按钮</div>
+        <script src="../js/zepto.js"></script>
+        <script src="../js/touch.js"></script>
+        <script>
+            $(function(){
+                $("#btn").on("touchstart",function(){
+                    alert("hello zepto");
+                })
+
+                $("body").append($("<p>我是新题啊家的元素</p>"))
+            })
+        </script>
+    
+</body>
+</html>

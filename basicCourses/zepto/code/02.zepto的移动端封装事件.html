@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            touch-action:none;
+        }
+    </style>
+</head>
+<body>
+        <div class="box1">tap</div>
+        <div class="box2">singleTap</div>
+        <div class="box3">doubleTap</div>
+        <div class="box4">longTap</div>
+        <div class="box5">swipe</div>
+        <div class="box6" style="width: 100px;height: 100px;background-color: red;">swipeLeft</div>
+        <script src="../js/zepto.js"></script>
+        <script src="../js/touch.js"></script>
+        <script>
+            $(function(){
+                 $(".box1").on("tap",function(){
+                     alert("tap");
+                 }) 
+                 $(".box2").on("singleTap",function(){
+                     alert("singleTap");
+                 })
+                 $(".box3").on("doubleTap",function(){
+                     alert("doubleTap");
+                 })
+                 $(".box4").on("longTap",function(){
+                     alert("longTap");
+                 }) 
+                 $(".box5").on("swipe",function(){
+                     alert("swipe");
+                 }) 
+                //  $(".box6").on("swipeLeft",function(){
+                //      alert("swipeLeft");
+                //  })   
+                 $(".box6").swipeLeft(function(){
+                    alert("swipeLeft");
+                 })
+
+            })
+        </script>
+    
+</body>
+</html>
