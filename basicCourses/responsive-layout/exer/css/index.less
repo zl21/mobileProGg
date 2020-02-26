@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    display: block;//由于常将a标签作为包含块使用
+    text-decoration: none;//去掉下划线
+}
+img{
+    display: block;//去掉img之间的幽灵空白
+}
+input{
+    outline: none;//!=border,设置表单获得焦点时的轮廓显示效果为none
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(218, 101, 241);
+    border-bottom: 5px solid rgb(220, 150, 235);
+    overflow: hidden;
+    display: flex;
+    .logo{
+        width: 25%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a{
+            // text-decoration: none;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                height: 70%;
+                display: none;
+                &:nth-child(1){
+                    @media screen and (min-width:1024px) {
+                        display: block;
+                    }
+                }
+                &:nth-child(2){
+                    @media screen and (min-width:768px) and (max-width:1024px) {
+                        display: block;
+                    }
+                }
+                &:nth-child(3){
+                    @media screen and (max-width:768px) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .search{
+        width: 50%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        input[type=text]{
+            width: 80%;
+            box-sizing: border-box;
+            height: 40px;
+            padding: 0 10px;
+            border-radius: 10px 0 0 10px;
+            border:1px solid #888;
+        }
+        input[type=submit]{
+            width: 20%;
+            height: 40px;
+            font-size: 14px;
+            border: 1px solid #888;
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+    }
+    .nav{
+        width: 25%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .navList{
+            display: none;
+            width: 100%;
+            ul{
+                display: flex;
+                justify-content: space-evenly;
+                a{
+                    width: 25%;
+                    text-align: center;
+                    height: 60px;
+                    font-size: 16px;
+                    line-height: 60px;
+                    color: #fff;
+                }
+            }
+            @media screen and (min-width:768px){
+                display: block;
+            }
+        }
+        .bread{
+            width: 46px;
+            height: 34px;
+            border: 2px solid #fff;
+            display: none;
+            div{
+                height: 34px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                span{
+                    display: block;
+                    width: 24px;
+                    height: 3px;
+                    background-color: #888;
+                }
+            }
+            @media screen and (max-width:768px){
+                display: block;
+            }
+        }
+    }
+}
