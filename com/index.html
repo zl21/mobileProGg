@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mobilePro</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- 
+            头部part：
+            头部需要保持当前位置一直不变，所以需要用到固定定位，此固定定位参照布局视口，然而由于移动端有许多视口（ios iframe内的fixed会失效），所以通常不采用固定定位，而是使用absolute定位来模拟fixed定位。
+         -->
+        <div class="header">
+            <div class="scrollBar"></div>
+            <div class="header_top">
+                <!-- logo -->
+                <h1 class="logo">
+                    <a href="javascript:; ">
+                        <img src="images/logo.png" alt="logo">
+                    </a>
+                </h1>
+                <!-- 面包屑导航 -->
+                <a href="javascript:;" class="menuBtn"></a>
+                <!-- 三个按钮的按钮组 -->
+                <div class="btns">
+                    <a href="javascript:;" class="search">search</a>
+                    <a href="javascript:;">sign-in</a>
+                    <a href="###">sign-up</a>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <form action="###" method="get">
+                    <input type="text" placeholder="Don't touch me！">
+                    <input type="submit" value="search">
+                </form>
+            </div>
+            <!-- 蒙版部分(menuBtn展开) -->
+            <ul class="mask">
+                <li>
+                    <a href="###">首页</a>
+                </li>
+                <li>
+                    <a href="###">MV</a>
+                </li>
+                <li>
+                    <a href="###">悦单</a>
+                </li>
+                <li>
+                    <a href="###">V榜</a>
+                </li>
+                <li>
+                    <a href="###">音乐</a>
+                </li>
+                <li>
+                    <a href="###">商城</a>
+                </li>
+                <li>
+                    <a href="###">节目</a>
+                </li>
+                <li>
+                    <a href="###">饭团</a>
+                </li>
+                <li>
+                    <a href="###">咨询</a>
+                </li>
+                <li>
+                    <a href="###">娱乐</a>
+                </li>
+                <li>
+                    <a href="###">APP</a>
+                </li>
+                <li>
+                    <a href="###">升级</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="mainIn">
+                <nav class="nav">
+                    <ul class="list">
+                        <li class="active">
+                            <a href="###">首页</a>
+                        </li>
+                        <li>
+                            <a href="###">MV</a>
+                        </li>
+                        <li>
+                            <a href="###">悦单</a>
+                        </li>
+                        <li>
+                            <a href="###">V榜</a>
+                        </li>
+                        <li>
+                            <a href="###">音乐</a>
+                        </li>
+                        <li>
+                            <a href="###">商城</a>
+                        </li>
+                        <li>
+                            <a href="###">节目</a>
+                        </li>
+                        <li>
+                            <a href="###">饭团</a>
+                        </li>
+                        <li>
+                            <a href="###">咨询</a>
+                        </li>
+                        <li>
+                            <a href="###">更新</a>
+                        </li>
+                        <li>
+                            <a href="###">APP</a>
+                        </li>
+                        <li>
+                            <a href="###">影视</a>
+                        </li>
+                        <li>
+                            <a href="###">电影</a>
+                        </li>
+                        <li>
+                            <a href="###">喜欢</a>
+                        </li>
+                        <li>
+                            <a href="###">推荐</a>
+                        </li>
+                        <li>
+                            <a href="###">收藏</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="carousel-wrap" needCarousel needauto>
+                    <div class="points-wrap"></div>
+                </div>
+                <section class="tap-wrap">
+                    <header class="tap-head">
+                        <h2>MV主播</h2>
+                        <span>更多&gt;</span>
+                    </header>
+                    <nav class="tap-nav">
+                        <a href="###">全部</a>
+                        <a href="###">内地</a>
+                        <a href="###">港澳台</a>
+                        <a href="###">欧美系列</a>
+                        <a href="###">日韩系列</a>
+                        <a href="###">鬼畜区</a>
+                        <div class="smallG"></div>
+                    </nav>
+                    <div class="tap-content">
+                        <div class="tap-loading"></div>
+                        <ul>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/a.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/b.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/c.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/d.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/e.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/f.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tap-loading"></div>
+                    </div>
+                </section>
+
+                <section class="tap-wrap">
+                    <header class="tap-head">
+                        <h2>MV主播</h2>
+                        <span>更多&gt;</span>
+                    </header>
+                    <nav class="tap-nav">
+                        <a href="###">全部</a>
+                        <a href="###">内地</a>
+                        <a href="###">港台</a>
+                        <a href="###">欧美</a>
+                        <a href="###">韩国</a>
+                        <a href="###">日本</a>
+                        <div class="smallG"></div>
+                    </nav>
+                    <div class="tap-content">
+                        <div class="tap-loading"></div>
+                        <ul>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/a.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/b.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/c.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/d.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/e.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/f.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tap-loading"></div>
+                    </div>
+                </section>
+
+                <section class="tap-wrap">
+                    <header class="tap-head">
+                        <h2>MV主播</h2>
+                        <span>更多&gt;</span>
+                    </header>
+                    <nav class="tap-nav">
+                        <a href="###">全部</a>
+                        <a href="###">内地</a>
+                        <a href="###">港台</a>
+                        <a href="###">欧美</a>
+                        <a href="###">韩国</a>
+                        <a href="###">日本</a>
+                        <div class="smallG"></div>
+                    </nav>
+                    <div class="tap-content">
+                        <div class="tap-loading"></div>
+                        <ul>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/a.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/b.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/c.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/d.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/e.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="###">
+                                    <img src="./images/f.jpg" alt="">
+                                    <span>君に贈る花がないがないがないがないがないがないがないがない</span>
+                                </a>
+                                <div class="tap-discuss">
+                                    <span class="left">9176</span>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tap-loading"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入适配方案 -->
+    <script src="js/rem.js"></script>
+    <!-- 引入tools -->
+    <script src="js/tools.js"></script>
+
+    <script>
+        // 1.阻止默认事件
+        document.addEventListener("touchstart", function (ev) {
+            ev.preventDefault();
+        }, { passive: false });
+
+        // 2.面包屑导航
+        menuBtn();
+        function menuBtn() {
+            let oMenuBtn = document.querySelector(".wrapper .header .header_top .menuBtn");
+            let oMask = document.querySelector(".wrapper .header .mask");
+
+            //保存当前蒙版的状态
+            let isOpen = false;
+
+            //给按钮绑定点击事件
+            oMenuBtn.addEventListener("touchstart", function (ev) {
+                // 防止点击menuBtn时时间冒泡到document上从而执行document的绑定事件以至于蒙版不会被打开。
+                ev.stopPropagation();
+
+                // 阻止传播以后，就无法使用document上的阻止默认事件了,所以自身要书写也一个阻止默认事件
+                ev.preventDefault();
+
+                if (isOpen) {
+                    //关闭
+                    oMask.style.display = "none";
+                    this.classList.remove("active");
+                } else {
+                    //打开
+                    oMask.style.display = "block";
+                    this.classList.add("active");
+                }
+                // 状态改变之后，开关要取反
+                isOpen = !isOpen;
+            });
+
+            // 当点击页面其他位置的时候，关闭并改变开关的状态
+            document.addEventListener("touchstart", function () {
+                // 在其他位置点击的时候，如果开关是打开的则关闭，否则不做操作
+                if (isOpen) {
+                    oMask.style.display = "none";
+                    oMenuBtn.classList.remove("active");
+                    isOpen = !isOpen;
+                }
+            }, { passive: false });
+
+            // 点击蒙版时不能让蒙版消失(奇怪的需求)，所以给蒙版也绑定一个点击事件，阻止传播
+            oMask.addEventListener("touchstart", function (ev) {
+                ev.stopPropagation();
+                // 阻止传播后，在蒙版上就无法阻止默认事件了，所以需要手动阻止默认事件
+                ev.preventDefault();
+            }, { passive: false });
+        }
+
+        // 3.搜索栏获取焦点和失去焦点
+        changeFoucs();
+        function changeFoucs() {
+            let oInputSearch = document.querySelector(".wrapper .header .header_bottom form input[type=text]");
+            //点击输入框时输入框获取焦点
+            oInputSearch.addEventListener("touchstart", function (ev) {
+                this.focus();
+
+                //因为会传播到document点击失去焦点的事件上，所以需要阻止传播
+                ev.stopPropagation();
+                //如果阻止传播以后，可能会有自身的默认事件，需要阻止默认事件
+                ev.preventDefault();
+            }, { passive: false });
+
+            //点击其他位置时输入框失去焦点
+            document.addEventListener("touchstart", function () {
+                oInputSearch.blur();
+            }, { passive: false })
+        }
+
+        // 4.拖动导航栏效果
+        drag();
+        function drag() {
+            let oNav = document.querySelector(".wrapper .main .nav");
+            let oList = document.querySelector(".wrapper .main .nav .list");
+            let startX = 0;//初始化当前手开始点击的位置
+            let elementX = 0;//初始化当前元素的位置
+            let translateX = 0;//初始化元素应该最终的位置
+            let minX = oNav.offsetWidth - oList.offsetWidth;//定义一个拖动的临界值
+            /* list元素的宽度是想由内部的元素撑开的,而不是继承父元素的100%,所以：
+                可：<ul class="list" style="position: absolute;">
+                也可：<ul class="list" style="float: left;">
+             */
+            console.log(minX);
+            let lastTime = 0; //初始化首touch时的时间戳
+            let lastPoint = 0; //首touch时元素的位置
+            let timeDis = 0; //time-distance
+            let pointDis = 0; //point-distance
+
+            // 给list一个3d变形，让他的动画执行硬件加速
+            tools1.css(oList, "translateZ", 0);
+
+            //给nav一个按下事件（想要滑动，首先要按下）
+            oNav.addEventListener("touchstart", function (ev) {
+                pointDis = 0;
+                //获取当前事件的touch，touchList的内容
+                let touch = ev.changedTouches[0];
+                //获取当前手指的位置
+                startX = touch.clientX;
+                //获取元素现在的位置信息（我们设计使用tanslate来进行位移）
+                elementX = tools1.css(oList, "translateX");
+
+                //快速滑屏代码 在刚按下的时候，获取当前的位置和时间戳  以方便计算最后一帧的速度
+                lastTime = Date.now();//获取初始时间戳
+                lastPoint = tools1.css(oList, "translateX");
+            }, { passive: false });
+
+            oNav.addEventListener("touchmove", function (ev) {
+                oList.flag = false;//保存当前 是不是橡皮筋  当前不是
+
+                /* 由于受到end事件中transition动画的影响，需要在move时把动画取消 */
+                oList.style.transition = "none";
+                //获取当前事件的手指头 touchList的内容
+                let touch = ev.changedTouches[0];
+                //获取当前手指头的位置
+                let nowX = touch.clientX;
+                //计算差值（如向左拖则disX为负）
+                let disX = nowX - startX;//动手后手的位置nowX - 初放手的位置startX
+                //给元素的最终位置赋值
+                translateX = elementX + disX;
+                /* 使得元素每次的有效移动距离都小于上一次，通过乘以一个递减的比例。
+                    得出最终位置以后，判断临界值,橡皮筋效果是在临界值设置的,在move的过程中，手指移动的距离正常，但是每一次元素移动的有效距离慢慢变少,虽然每次移动的距离慢慢变少，但是元素也是在走。 
+                */
+                if (translateX >= 0) {
+                    oList.flag = true;
+                    //设置一个递减的比例，比例初始值还不能大于1
+                    let scale = 300 / (300 + translateX);
+                    //计算好比例以后，重新对tranlateX赋值，手指走的差值乘以比例，加上元素原始的位置值
+                    translateX = disX * scale + elementX;//(如向左拖时，负小数+elementX = 向左稍微多走一点点)
+                } else if (translateX <= minX) {
+                    //进入橡皮筋的临界值，改动flag的状态
+                    oList.flag = true;
+                    let scale = 300 / (300 + translateX);
+                    translateX = - disX * scale + elementX;
+                }
+                //给元素赋值最终位置
+                tools1.css(oList, "translateX", translateX);
+
+                /* 快速滑屏效果的实现：
+                    首按时获取当前位置及时间戳，便于计算速度。
+                    second-touch时也获取位置及时间戳，并将第二次作为第三次的参照，
+                    依此……
+                    当手放开后，以计算的速度为速度继续滑动一定的距离（仿佛惯性~）
+                 */
+                let nowTime = Date.now(); //首touch并拖动后的时间戳
+                let nowPoint = tools1.css(oList, "translateX");
+                timeDis = nowTime - lastTime;
+                pointDis = nowPoint - lastPoint;
+                //将第n(非最后一次)次touch-move变为参照
+                lastTime = nowTime;
+                lastPoint = nowPoint;
+            }, { passive: false });
+
+            //橡皮筋效果：松手后 弹回去
+            oNav.addEventListener("touchend", function () {
+                // 快速滑屏（松手后）
+                let translateX = tools1.css(oList, 'translateX');// 获取松手瞬间的位置
+                // 判断滑屏与否
+                if (oList.flag) {
+                    if (translateX >= 0) {
+                        translateX = 0;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateX", translateX);
+                    } else if (translateX <= minX) {
+                        translateX = minX;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateX", translateX);
+                    }
+                } else {
+                    let speed = pointDis / timeDis; //计算speed
+                    console.log(speed); //speed不要不合理
+                    speed = Math.abs(speed) < 0.5 ? 0 : speed;
+
+                    /* a little 优化 */
+                    let time = Math.abs(speed) * 0.2;//速度决定动画时间，*0.2为了时间短点
+                    time = time < 0.8 ? 0.8 : time;//控制time在0.8 ~ 2s之间
+                    time = time > 2 ? 2 : time;
+                    /* a little 优化结束 */
+
+                    // 确定最终位置
+                    let targetX = translateX + speed * 300;
+                    console.log(translateX, targetX);
+                    /* // 到目标位置的过程
+                    oList.style.transition = 'all .5s'; */
+                    // 判断targetX临界
+                    let bze = '';//使用贝塞尔曲线来实现快速滑屏到临界值后呈现橡皮筋效果
+
+                    if (targetX >= 0) {
+                        targetX = 0;
+                        /* 快速滑屏到临界值之后呈现橡皮筋效果 */
+                        bze = "cubic-bezier(.4,1.52,.7,1.57)";
+                    } else if (targetX <= minX) {
+                        targetX = minX;
+                        bze = "cubic-bezier(.4,1.52,.7,1.57)";
+                    }
+                    // 到目标位置的过程
+                    // oList.style.transition = 'all .5s';
+                    oList.style.transition = `all ${time}s ${bze}`;
+                    // 将目标位置赋值给元素
+                    tools1.css(oList, "translateX", targetX);
+                }
+                /* 
+                                //判断，如果到达临界值以后需要执行松手的内容，否则松手后不执行
+                                if (translateX >= 0) {
+                                    translateX = 0;
+                                } else if (translateX <= minX) {
+                                    translateX = minX;
+                                }
+                                oList.style.transition = "all .3s";
+                                tools1.css(oList, "translateX", translateX); 
+                */
+            });
+        }
+
+        // 5.轮播图carousel
+        //根据后台数据请求图片
+        let arr = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+        carousel(arr);
+        //封装轮播图的函数
+        function carousel(arr) {
+            let oCarouselWrap = document.querySelector(".carousel-wrap");
+            //数组长度可能会发生改变（如实现无缝轮播时要添加图片）
+            let pointsLength = arr.length;
+            //如果用书书写了oCarouselWrap这个元素，则开始轮播图逻辑
+            if (oCarouselWrap) {
+                //生成轮播图基本结构
+                //判断是否是无缝
+                let needCarousel = oCarouselWrap.getAttribute("needCarousel");
+                //把属性needCarousel 状态改变成布尔值
+                needCarousel = needCarousel == null ? false : true;
+                console.log(needCarousel);
+                //如果是无缝，则把数据的数组改变一下
+                if (needCarousel) {
+                    arr = arr.concat(arr);
+                }
+                let oUlNode = document.createElement("ul");
+                //生成style标签，用来动态的盛放图片的父级宽度 及 自身的宽度
+                let oStyle = document.createElement("style");
+                oStyle.innerHTML = `
+                .carousel-wrap>.list{
+                    width: ${arr.length}00%;
+                }
+                .carousel-wrap>.list>li{
+                    width:${1 / arr.length * 100}%
+                }`;
+                //把添加好样式的oStyle 添加在head中
+                document.head.appendChild(oStyle);
+                //给生成的ul添加类名
+                oUlNode.classList.add("list");
+                //根据后台数据生成内容，也就是li标签及里边的图片
+                for (let i = 0; i < arr.length; i++) {
+                    oUlNode.innerHTML += `<li>
+                        <a href="###">
+                            <img src="${arr[i]}" alt="">
+                        </a>
+                    </li>`;
+                }
+                // 把生成的li插入到父级中
+                oCarouselWrap.appendChild(oUlNode);
+
+                //添加小圆点导航
+                let oPointsWrap = document.querySelector(".points-wrap");
+                if (oPointsWrap) {
+                    //遍历获取数组的真实长度，生成相应数量的小圆点
+                    for (let i = 0; i < pointsLength; i++) {
+                        if (i == 0) {
+                            oPointsWrap.innerHTML += `<span class="active"></span>`;
+                        } else {
+                            oPointsWrap.innerHTML += `<span></span>`;
+                        }
+                    }
+                }
+
+                // 滑屏效果（Slide to switch pictures.）
+                let startX = 0;//初始化手按下时候的位置
+                let elementX = 0;//初始化元素起始的位置
+                let disX = 0;//初始化每次滑动执行时候的差值
+                let translateX = 0;//元素移动后的位置
+                let index = 0;//初始化一个下标 保存当前图片的下标
+                /*
+                防抖的思想:
+                    判断用户首次滑屏的方向
+                    如果是x轴  则不管用户怎么滑动 都会进行抖动
+                    如果是y轴  则不管用户怎么滑动 都不会抖动
+                */
+                //因防抖需要，重新定义一下新的变量
+                let startY = 0;//初始化手按下时候的位置
+                let disY = 0;//初始化每次滑动执行时候的差值
+                let isFirst = true;//防抖中 判断当前是否是第一次进入
+                let isX = true;
+                let needAutoTimer = null;//轮播图自动走与否
+
+                oCarouselWrap.addEventListener("touchstart", function (ev) {
+                    //当手指按下，清除自动走的计时器动画
+                    clearInterval(needAutoTimer);
+                    //当按下的时候清除动画
+                    oUlNode.style.transition = "none";
+
+                    //当手指头按下的时候，判断是不是无缝
+                    if (needCarousel) {
+                        let index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                        if (-index === 0) {
+                            // 因为ul都是的translateX都是负数，所以index可以设置为负的
+                            index = - pointsLength;
+                        } else if (-index == (arr.length - 1)) {
+                            index = -(pointsLength - 1);
+                        }
+                        tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                    }
+                    //当手按下的时候，获取当前手的位置 及元素位置
+                    let touch = ev.changedTouches[0];
+                    //获取按下x 和 y的位置 以便判断防抖
+                    startX = touch.clientX;
+                    startY = touch.clientY;
+                    elementX = tools1.css(oUlNode, "translateX");
+                    //每次touch都要改变isFirst与isX的状态为true
+                    isFirst = true;
+                    isX = true;
+                }, { passive: false });
+
+                oCarouselWrap.addEventListener("touchmove", function (ev) {
+                    if (!isX) {
+                        return;//非横向
+                    }
+                    let touch = ev.changedTouches[0];
+                    //当手移动的时获取新的手指的位置
+                    let nowX = touch.clientX;
+                    let nowY = touch.clientY;
+                    //求出手移动的距离
+                    disX = nowX - startX;
+                    disY = nowY - startY;
+                    //求出元素移动后的位置
+                    translateX = disX + elementX;
+
+                    //给元素赋值之前的处理：首先判断是不是第一次，如果是第一次则计算出当前的方向
+                    if (isFirst) {
+                        isFirst = !isFirst;
+                        if (Math.abs(disY) > Math.abs(disX)) {
+                            //一旦这个时候防止抖动了，那么以后都需要防止抖动
+                            // 也就是说以后再也进不来touchmove事件了
+                            isX = !isX;
+                            // 说明在y轴上滑动，就不让向下执行
+                            return;//return 仅仅是首次防抖
+                        }
+                    }
+
+                    //给元素的位置赋值
+                    tools1.css(oUlNode, "translateX", translateX);
+                }, { passive: false });
+
+                /* 类似四舍五入的效果，不让图片停留在尴尬的位置 */
+                oCarouselWrap.addEventListener("touchend", function (ev) {
+                    /* 
+                                        // 当用户松手的时候根据disX的差值的正负，得出用户是向前还是向后翻动
+                                        if (disX < 0) {
+                                            index++;//disX小于0时，左滑，index++即显示后一张
+                                        } else if (disX > 0) {
+                                            index--;
+                                        }
+                                        console.log(index);
+                                        // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                                        tools1.css(oUlNode, "translateX", - index * document.documentElement.clientWidth);
+                     */
+                    //当松手的时候，获取此时元素的位置，把此时的位置比上 一个图片的大小
+                    //值得到的是一个小数，这个小数的小数点左边的数就是被滑动的那张图，小数点的数字 就是后边那种图被滑动的比例  
+                    //我们可以对小数进行四舍五入，如果后边小数点大于5 则说明用户已经翻过了一半 则换下张图，否则不换图
+                    index = tools1.css(oUlNode, "translateX") / document.documentElement.clientWidth;
+                    index = Math.round(index);
+
+                    arcPoint(index);//调用
+
+                    //当松手的时候，应该继续自动走
+                    if (needAuto) {
+                        auto();
+                    }
+
+                    // 知道下标以后，通过下标计算出ul应该走的位置,下标乘以一张图片的宽度就是 元素的位置
+                    tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                }, { passive: false })
+
+                //获取用户是否书写needauto属性
+                let needAuto = oCarouselWrap.getAttribute("needauto");
+                // 把needauto属性变成布尔值
+                needAuto = needAuto === null ? false : true;
+                //判断当needauto为true  则需要自动滚动
+                if (needAuto) {
+                    //调用自动滚动函数
+                    auto();
+                }
+                //自动滚动函数
+                function auto() {
+                    //每次添加计时器之前 清掉之前的计时器
+                    clearInterval(needAutoTimer);
+                    needAutoTimer = setInterval(function () {
+                        // 自动走其实就是控制index的加减
+                        //在index自动改变之前，需要判断index当前的位置是不是最后一个
+                        //如果是 则index不能继续减了，所以需要把index变成前边对应图片的index
+                        //index变成之前对应的图片，图片的位置也要改变成之前的图片
+                        if (index == 1 - arr.length) {
+                            index = 1 - pointsLength;
+                            // 在这个改变状态下，不应该让瞬间改变拥有动画
+                            oUlNode.style.transition = "none";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+                        }
+                        // 在同步执行代码的过程中，transition设置的值会前后覆盖，所以需要把后边的代码放到异步中执行
+                        setTimeout(function () {
+                            //因为index是负值，所以自动走应该是index --
+                            index--;
+                            oUlNode.style.transition = "all 1s";
+                            tools1.css(oUlNode, "translateX", index * document.documentElement.clientWidth);
+
+                            //每次移动过后让小圆点跟着走
+                            arcPoint(index);
+                        }, 0)
+
+                    }, 2000)
+                }
+
+                /* point nav 函数：一个参数 */
+                function arcPoint(index) {
+                    //先判断用户需不需要小圆点
+                    if (oPointsWrap) {
+                        let oPointsSpan = document.querySelectorAll(".points-wrap span");
+                        //在给span新的样式之前，需要把span原来的样式给清空
+                        for (let i = 0; i < oPointsSpan.length; i++) {
+                            oPointsSpan[i].classList.remove("active");
+                        }
+                        //根据当前图片的下标，得出需要添加特殊类名的元素
+                        //因为index的取值范围是 0-9  而span下标的范围是0-4  所以需要做一些处理
+                        // 0-9 对 5取余  得到的范围是 0 - 4  所以可以使用去、取余方法
+                        oPointsSpan[-index % pointsLength].classList.add("active");
+                    }
+                }
+            }
+        }
+
+        // 6.tap选项卡
+        tap();
+        function tap() {
+            let oTapContents = document.querySelectorAll(".tap-content");
+            let oTapWrap = document.querySelector(".tap-wrap");
+            let oLoading = document.querySelectorAll(".tap-loading");
+            //获得父级的宽度，也是每一屏自己的宽度
+            let tapW = oTapWrap.offsetWidth;
+
+            // 因为页面中可能出现多个tap  所以循环遍历
+            for (let i = 0; i < oTapContents.length; i++) {
+                //封装一个move函数，为每一个元素绑定事件
+                move(oTapContents[i]);
+            }
+
+            function move(oTapContent) {
+                //获取小绿
+                let oSmallG = oTapContent.parentNode.querySelector(".smallG");
+                //设置一下当前小绿条的宽度，默认初始的时候 小绿条的宽度 是第一个标题的宽度
+                let aNodes = oTapContent.parentNode.querySelectorAll(".tap-nav a");
+                oSmallG.style.width = aNodes[0].offsetWidth + "px";
+
+                //首先把主要内容区域移动进来
+                tools1.css(oTapContent, "translateX", -tapW);
+
+                //滑屏逻辑初始化变量
+                let startPoint = { x: 0, y: 0 };//初始化手指的位置 分x和y
+                let elementPoint = { x: 0, y: 0 };//初始化元素按下时候的位置
+                //初始化防抖变量
+                let isFirst = true;//初始化是第一次
+                let isX = true;//初始化是x轴滑动
+                var isOver = false; //当前是否有动画
+                let now = 0;//当前选项卡切换的屏，默认是第一屏
+
+                //给oTapContent绑定手指触摸事件
+                oTapContent.addEventListener("touchstart", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
+
+                    //去掉在其他事件中 给oTapcontent添加的动画
+                    oTapContent.style.transition = "none";
+                    let touch = ev.changedTouches[0];
+                    //给手指初始位置赋值
+                    startPoint.x = touch.clientX;
+                    startPoint.y = touch.clientY;
+                    /* 以下是传值传址书写方法：
+                        但是上边的传值传址书写方法 在iphone5  5s 5c的型号中，在他们webview,移动端的事件的event对象执行了同一个引用
+                        如果将来出现兼容性问题 可以把代码改动为: startPoint = {clientX:touch.clientX,clientY:touch.clientY};
+                    */
+                    // startPoint = touch;
+
+                    //给元素初始位置赋值
+                    elementPoint = {
+                        x: tools1.css(oTapContent, "translateX"),
+                        y: tools1.css(oTapContent, "translateY"),
+                    }
+                    //当每次重新按下的时候 需要把 是否是第一次 和 是否是x滑动 变量更新为true
+                    isFirst = true;
+                    isX = true;
+                }, { passive: false });
+
+                //给oTapContent绑定手指滑动事件
+                oTapContent.addEventListener("touchmove", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
+                    if (!isX) {
+                        return;
+                    }
+                    let touch = ev.changedTouches[0];
+                    // let nowPoint = touch;
+                    let nowPoint = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    }
+                    let dis = {
+                        /* x: nowPoint.clientX - startPoint.clientX,
+                        y: nowPoint.clientY - startPoint.clientY */
+                        x: nowPoint.x - startPoint.x,
+                        y: nowPoint.y - startPoint.y
+                    }
+                    //防抖代码，只有第一次进入才执行防抖代码
+                    if (isFirst) {
+                        //当是第一次进入  那么首先取个反
+                        isFirst = !isFirst;
+                        // 检测第一次执行的move 和 start按下时候位置差 是x滑动还是y滑动
+                        if (Math.abs(dis.y) > Math.abs(dis.x)) {
+                            //如果在y轴滑动大于x轴 则把isX变成false，下次就无法进入move方法
+                            isX = false;
+                            //并让函数退出 不能执行下边的赋值代码
+                            return;
+                        }
+                    }
+                    tools1.css(oTapContent, "translateX", elementPoint.x + dis.x);
+                    //每次只要执行move 都会执行这个函数，函数作用是检测是否超过二分之一 如果超过二分之一 则直接全部滑动过去
+                    jump(dis.x);//每次执行的时候 可以传入当前的差值
+                }, { passive: false });
+
+                //给oTapContent绑定手指抬起事件
+                oTapContent.addEventListener("touchend", function (ev) {
+                    if (isOver) {
+                        return;
+                    }
+                    //end中目前只判断没有超过二分之一的情况下
+                    let touch = ev.changedTouches[0];
+                    //松手的时候  获取当前的差值
+                    let nowPoint = {
+                        x: touch.clientX,
+                        y: touch.clientY
+                    }
+                    let dis = {
+                        x: nowPoint.x - startPoint.x,
+                        y: nowPoint.y - startPoint.y
+                    }
+                    //判断有没有超过二分之一
+                    if (Math.abs(dis.x) <= tapW / 2) {
+                        // 如果没有超过二分之一  则仍然返回拖动前的位置
+                        oTapContent.style.transition = "all 1s";
+                        tools1.css(oTapContent, "translateX", - tapW)
+                    }
+                }, { passive: false });
+                //封装判断滑动是否二分之一并跳的函数
+                function jump(disX) {
+                    //首先判断是否超过二分之一
+                    if (Math.abs(disX) > tapW / 2) {
+                        //在执行jump的时候，说明已经到达动画状态，此时需要把判断动画的变量给设置一下
+                        isOver = true;
+                        //声明一个变量，代表元素最终要跳转的位置（只有两个 一个是0  一个是2*tapW）
+                        let targetX = disX > 0 ? 0 : -2 * tapW;
+                        //给元素的移动添加一个动画
+                        oTapContent.style.transition = "all 1s";
+                        //给元素跳到相应的位置
+                        tools1.css(oTapContent, "translateX", targetX);
+                        //当最后超过二分之一时候自动走过去的动画执行完成以后，触发loading图的加载和数据的加载
+                        oTapContent.addEventListener("transitionend", endFn);
+                        function endFn() {
+                            //当事件绑定上去以后，开始执行的时候，直接先去掉当前的绑定
+                            //为了防止当前元素还有其他的transition事件
+                            oTapContent.removeEventListener("transitionend", endFn);
+
+                            //效果：超过二分之一的时候，需要等移动动画完成，然后把loading的透明度改成1
+                            for (let i = 0; i < oLoading.length; i++) {
+                                oLoading[i].style.opacity = 1;
+                            }
+
+                            //当loading开始显示的时候，说明用户滑动完毕，开始改变小绿条的定位
+                            //首先让now 开始 改变  需要判断now是++ 还是--
+                            //通过disX来判断用户滑动的方向
+                            disX > 0 ? now-- : now++;
+                            //然后判断now的临界值 
+                            if (now < 0) {
+                                //如果now小于0，则让now到最后的下标 也就是 a的长度减1
+                                now = aNodes.length - 1;
+                            } else if (now > aNodes.length - 1) {
+                                //当now值到达最大的时候，now应该变成0
+                                now = 0;
+                            }
+
+                            //得到now的值以后，开始计算小绿条的宽度 和小绿条的位置
+                            oSmallG.style.width = aNodes[now].offsetWidth + "px";
+                            tools1.css(oSmallG, "translateX", aNodes[now].offsetLeft);
+                            //下一步 发送ajax请求 处理请求 然后完成数据的渲染,使用延迟计时器模拟数据进入
+                            setTimeout(function () {
+                                //假设当前是成功执行的回调函数
+                                //此时 loading的图变成透明，元素的内容区域回到正常位置 （-w）
+                                for (let i = 0; i < oLoading.length; i++) {
+                                    oLoading[i].style.opacity = 0;
+                                }
+                                //在改变位置的时候，要直接显示出来，所以需要把动画给去掉
+                                oTapContent.style.transition = "none";
+                                tools1.css(oTapContent, "translateX", -tapW)
+                                //当数据加载完成，并且动画执行完成的时候，需要把开关给关闭，然后就可以重新执行拖动动画了
+                                isOver = false;
+                            }, 2000)
+                        }
+                    }
+                }
+            }
+        }
+
+        // 7.nav导航 点击变色
+        changeColor();
+        function changeColor() {
+            let oList = document.querySelector(".main .nav .list");
+            let oAnodes = document.querySelectorAll(".main .nav .list li a");
+            //使用事件委托给所有的导航列表项添加事件
+            //当按下去的时候不要跳转，因为之前还写了一个滑动事件，
+            //当松开手的时候判断：当滑动的时候  不触发点击事件 当没有滑动的时候 触发点击事件
+            oList.addEventListener("touchstart", function () {
+                //当按下的手，给当前事件的list一个属性，保存是否有按下的情况
+                this.isMove = false;//默认当前没有移动
+            })
+
+            //绑定一个移动事件
+            oList.addEventListener("touchmove", function () {
+                //当手指滑动后，就把isMove给打开，说明手指头滑动了
+                this.isMove = true;
+            })
+
+            //绑定一个手指头抬起的事件
+            oList.addEventListener("touchend", function (ev) {
+                //当手指头抬起的时候，判断isMove的情况，
+                //如果滑动过，则不再继续执行，因为之前已经书写了滑动代码
+                //如果没有滑动过，则开始执行点击切换导航事件
+
+                if (this.isMove) {
+                    return;
+                }
+                //先获取当前事件的手指
+                let touch = ev.changedTouches[0];
+                if (touch.target.nodeName.toLowerCase() == "a") {
+                    //当前及某一个li的时候，把其他所有的样式圈闭清掉，然后给当前点击的li添加
+                    //因为target是a标签  所以要使用parentNode
+                    //for循环去掉所有默认样式
+                    for (let i = 0; i < oAnodes.length; i++) {
+                        oAnodes[i].parentNode.classList.remove("active");
+                    }
+                    //给当前点击的a元素的父级添加active类名
+                    touch.target.parentNode.classList.add("active");
+                }
+            })
+        }
+
+        // 8.竖向滑屏
+        let oMain = document.querySelector(".main");
+        let oMainIn = document.querySelector(".mainIn");
+        let oHeader = document.querySelector(".header");
+        // 9.滚动条逻辑
+        let oBar = document.querySelector(".wrapper .scrollBar");
+        let scaleBar = document.documentElement.clientHeight / oMainIn.offsetHeight;
+        oBar.style.height = scaleBar * document.documentElement.clientHeight + "px";
+        let callBack = {
+            start() {
+                oBar.style.opacity = 1;
+            },
+            move() {
+                tools1.css(oBar, "translateY", - (tools1.css(this, "translateY") + oHeader.offsetHeight) * scaleBar)
+            },
+            end() {
+                oBar.style.opacity = 0;
+            }
+        } //oHeader end
+        vMove(oMain, oMainIn, callBack);
+        function vMove(oNav, oList, callBack) {
+            //既点即停需要Tween算法
+            let Tween = {
+                Linear: function (t, b, c, d) { return c * t / d + b; },
+                back: function (t, b, c, d, s) {
+                    if (s == undefined) s = 1.70158;
+                    return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+                },
+            }
+            // 先定义一些变量的初始值
+            let startY = 0;//初始化当前手开始点击的位置
+            let elementY = 0;//初始化当前元素的位置
+            let translateY = 0;//初始化元素应该最终的位置
+            let minY = oNav.offsetHeight - oList.offsetHeight;//定义一个拖动的临界值
+            let lastTime = 0;//初始开始的时间戳
+            let lastPoint = 0;//初始开始元素位置
+            let timeDis = 0;//初始的时间差
+            let pointDis = 0;//初始的位置差
+            //定义tween算法的计时器
+            let bzrTimer = null;
+            // 给list一个3d变形，让他的动画执行硬件加速
+            tools1.css(oList, "translateZ", 0);
+            //防抖声明
+            let isFirst = true;
+            let isY = true;
+            //给nav一个按下事件（想要滑动，首先必须按下）
+            oNav.addEventListener("touchstart", function (ev) {
+                //既点即停 只需要停止计时器即可
+                clearInterval(bzrTimer);
+                pointDis = 0;
+                //获取当前事件的手指头 touchList的内容
+                let touch = ev.changedTouches[0];
+                //获取当前手指的位置
+                startY = touch.clientY;
+                startX = touch.clientX;
+                //获取元素现在的位置信息（我们设计使用tanslate来进行位移）
+                elementY = tools1.css(oList, "translateY");
+                //快速滑屏代码 在刚按下的时候，获取当前的位置和时间戳  以方便计算最后一帧的速度
+                lastTime = Date.now();//获取初始时间戳
+                lastPoint = touch.clientY;
+                isFirst = true;
+                isY = true;
+                //调用回调函数
+                if (callBack && typeof callBack["start"] === "function") {
+                    callBack["start"]();
+                }
+            }, { passive: false })
+            oNav.addEventListener("touchmove", function (ev) {
+                if (!isY) {
+                    return;
+                }
+                oList.flag = false;//保存当前 是不是橡皮筋  当前不是
+                //因为end事件中给元素一个transition动画，我们需要在move的时候把这个动画给去掉
+                oList.style.transition = "none";
+                //获取当前事件的手指头 touchList的内容
+                let touch = ev.changedTouches[0];
+                //获取当前手指头的位置
+                let nowY = touch.clientY;
+                let nowX = touch.clientX;
+                //计算差值
+                let disY = nowY - startY;
+                let disX = nowX - startX;
+                //给元素的最终位置赋值
+                translateY = elementY + disY;
+                //快速滑屏逻辑
+                let nowTime = Date.now();//获取移动后的时间戳
+                let nowPoint = touch.clientY;
+                //如果说当次的move是最后一次滑动，则计算出时间差和位置差
+                timeDis = nowTime - lastTime;
+                pointDis = nowPoint - lastPoint;
+                //得出最终位置以后，判断临界值
+                //橡皮筋效果是在临界值设置的
+                //在move的过程中，手指移动的距离正常，但是每一次元素移动的有效距离慢慢变少
+                //虽然每次移动的距离慢慢变少，但是元素也是在走
+                //怎么样让元素每次的有效距离都比前一次少呢？给一个比例，把手指的距离乘以这个比例得到有效移动距离，然后每次移动的时候，比例越来越小
+                if (translateY >= 0) {
+                    //进入橡皮筋的临界值，改动flag的状态
+                    oList.flag = true;
+                    //设置一个比例 比例的分母需要越来越大，所以使用变量表示，并且比例初始值还不能大于1
+                    let scale = 300 / (300 + translateY);
+                    //计算好比例以后，重新对tranlateY赋值，手指走的差值乘以比例 再加上元素原始的位置的值
+                    translateY = pointDis * scale + tools1.css(oList, "translateY");
+                } else if (translateY <= minY) {
+                    //进入橡皮筋的临界值，改动flag的状态
+                    oList.flag = true;
+                    let scale = 300 / (300 + translateY);
+                    translateY = - pointDis * scale + tools1.css(oList, "translateY");;
+                }
+                if (isFirst) {
+                    isFirst = false;
+                    // 在赋值之前判定防抖
+                    if (Math.abs(disX) > Math.abs(disY)) {
+                        isY = false;
+                        return;
+                    }
+                }
+                //把元素的最终位置赋值给元素
+                tools1.css(oList, "translateY", translateY);
+                //如果不是最后一次滑动，则把这次的时间和距离更新为旧的值
+                lastTime = nowTime;
+                lastPoint = nowPoint;
+                //调用回调函数
+                if (callBack && typeof callBack["move"] === "function") {
+                    callBack["move"].call(oList);
+                }
+            }, { passive: false })
+
+            //橡皮筋效果是 松手后 弹回去
+            oNav.addEventListener("touchend", function () {
+                //快速滑屏逻辑
+                //当松手的时候，获取当前的位置
+                let translateY = tools1.css(oList, "translateY");
+                //判断是否是橡皮筋效果
+                if (oList.flag) {
+                    if (translateY >= 0) {
+                        translateY = 0;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateY", translateY);
+                    } else if (translateY <= minY) {
+                        translateY = minY;
+                        oList.style.transition = `all .3s`;
+                        tools1.css(oList, "translateY", translateY);
+                    }
+                    if (callBack && typeof callBack["move"] === "function") {
+                        callBack["end"]();
+                    }
+                } else {
+                    //计算最后一帧的速度
+                    let speed = pointDis / timeDis;
+                    if (isNaN(speed)) {
+                        speed = 0;
+                    }
+                    //给速度一个值，如果太小则不要 
+                    speed = Math.abs(speed) < 0.5 ? 0 : speed;
+                    //如果速度越快，则动画的时间越长
+                    let time = Math.abs(speed) * .2;
+                    // 控制生成的时间在0.8s -- 2s之间
+                    time = time < .8 ? .8 : time;
+                    // time = time > 2 ? 2 : time;
+                    //根据速度计算出还要走的距离，计算出最终的目标距离
+                    let targetY = translateY + speed * 200
+                    console.log(targetY);
+                    //使用贝塞尔曲线来制作快速滑屏到临界值的橡皮筋效果
+                    // let bzr = "";
+                    let type = "Linear";
+                    // 在给targetY赋值之前，需要判断tragetY的临界值
+                    if (targetY >= 0) {
+                        targetY = 0;
+                        // bzr = "cubic-bezier(.4,1.52,.7,1.57)";
+                        type = "back";
+                    } else if (targetY <= minY) {
+                        targetY = minY;
+                        // bzr = "cubic-bezier(.4,1.52,.7,1.57)";
+                        type = "back";
+                    }
+                    bzr(type, targetY, time);
+                    //因为停止以后，已经计算出了目标位置，把目标位置给到元素，然后给一个动画 让他自己走
+                    // oList.style.transition = `all ${time}s ${bzr}`
+                    //把求出来的目标位置赋值给元素
+                    // tools1.css(oList,"translateY",targetY);
+                }
+            })
+            function bzr(type, targetY, time) {
+                //定义次数
+                let t = 0;
+                //初始位置 也就是调用函数的时候的当前位置
+                let b = tools1.css(oList, "translateY");
+
+                //结束位置和初始位置的差值
+                let c = targetY - b;
+                //总次数 
+                //已经在end中获得了time  把time转换成毫秒
+                // 每次计时器执行的频率是1000/60  所以总此时是time/ （1000/60）
+                let d = time * 1000 / (1000 / 60);
+
+                bzrTimer = setInterval(function () {
+                    t++;
+                    if (callBack && typeof callBack["move"] === "function") {
+                        callBack["move"].call(oList);
+                    }
+                    if (t >= d) {
+                        clearInterval(bzrTimer);
+                        if (callBack && typeof callBack["move"] === "function") {
+                            callBack["end"]();
+                        }
+                    }
+                    tools1.css(oList, "translateY", Tween[type](t, b, c, d));
+                }, 1000 / 60)
+            }
+        }
+
+    </script>
+</body>
+
+</html>
